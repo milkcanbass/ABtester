@@ -1,4 +1,4 @@
 node_modules
 dist
 coverage
-src/firebase/firebaseConfig.js
+/src/firebase/firebaseConfig.js
