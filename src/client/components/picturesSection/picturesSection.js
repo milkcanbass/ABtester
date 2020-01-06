@@ -1,5 +1,5 @@
 import React from 'react';
-import './cardWindow.scss';
+import './picturesSection.scss';
 
 // Redux
 import { connect } from 'react-redux';
@@ -11,11 +11,11 @@ import { setImageReady } from '../../redux/cardWindow/cardWindow.action';
 import PictureWindow from '../pictureWindow/pirctureWindow';
 import MyButton from '../myButton/myButton';
 
-const CardWindow = ({ setImageReady, imageReady }) => (
+const PicturesSection = ({ setImageReady, imageReady }) => (
   <>
     <div className="cardWrapper">
-      <PictureWindow />
-      <PictureWindow />
+      <PictureWindow window="window1" />
+      <PictureWindow window="window2" />
     </div>
     <MyButton ready="ready" onClick={(e) => setImageReady()}>
       {imageReady ? 'upload' : 'uploade image'}
@@ -31,4 +31,4 @@ const mapStateToProps = createStructuredSelector({
   imageReady: selectImageReady,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardWindow);
+export default connect(mapStateToProps, mapDispatchToProps)(PicturesSection);
