@@ -13,7 +13,10 @@ import {
 import PictureWindow from '../pictureWindow/pirctureWindow';
 import MyButton from '../myButton/myButton';
 
-const PicturesSection = ({ window1Image, window2Image }) => {
+//firebase
+import { storage } from '../../../firebase/firebaseConfig';
+
+const PicturesSection = ({ window1Image, window2Image, window1Uuid, window2Uuid }) => {
   const [disableBtn, setDisableBtn] = useState({
     disable: false,
   });
@@ -25,14 +28,15 @@ const PicturesSection = ({ window1Image, window2Image }) => {
     setDisableBtn({
       disable: true,
     });
-    const uploadTask = storage.ref(`images/${uuid}`).put(image);
-    uploadTask.on(
+    const uploadImg1 = storage.ref(`images/${window1Uuid}`).put(window1Image);
+    const uploadImg2 = storage.ref(`images/${window2Uuid}`).put(window2Image);
+    uploadImg1.on(
       'state_changed',
-      (snapshot) => {
+      snapshot => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        this.setState({ progress });
+        // this.setState({ progress });
       },
-      (error) => {
+      error => {
         // error function ....
         console.log(error);
         setDisableBtn({
@@ -43,12 +47,15 @@ const PicturesSection = ({ window1Image, window2Image }) => {
         // complete function ....
         storage
           .ref('images')
-          .child(image.name)
+          .child(window1Uuid)
           .getDownloadURL()
-          .then((url) => {
+          .then(url => {
             console.log(url);
-            this.setState({ url });
+            // this.setState({ url });
           });
+        setDisableBtn({
+          disable: false,
+        });
       },
     );
   };
@@ -58,12 +65,12 @@ const PicturesSection = ({ window1Image, window2Image }) => {
   let uploadingBtn;
   if (window1Image && window2Image) {
     uploadingBtn = (
-      <MyButton onClick={(e) => handleUpload()} disabled={disableBtn.disable}>
+      <MyButton onClick={e => handleUpload()} disabled={disableBtn.disable}>
         Push to upload
       </MyButton>
     );
   } else {
-    uploadingBtn = <MyButton onClick={(e) => handleUpload()}>Please choose image</MyButton>;
+    uploadingBtn = <MyButton onClick={e => handleUpload()}>Please choose image</MyButton>;
   }
 
   return (
@@ -77,13 +84,15 @@ const PicturesSection = ({ window1Image, window2Image }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   setImageReady: () => dispatch(setImageReady()),
 });
 
 const mapStateToProps = createStructuredSelector({
   window1Image: selectWindow1Image,
   window2Image: selectWindow2Image,
+  window1Uuid: selectWindow1Uuid,
+  window2Uuid: selectWindow2Uuid,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PicturesSection);
