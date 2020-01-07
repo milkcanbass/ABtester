@@ -11,6 +11,8 @@ import {
   selectWindow2Image,
   selectWindow1Url,
   selectWindow2Url,
+  selectWindow1ImgUrl,
+  selectWindow2ImgUrl,
   selectWindow1Progress,
   selectWindow2Progress,
   selectWindow1Uuid,
@@ -22,6 +24,7 @@ import { setImage } from '../../redux/cardWindow/cardWindow.action';
 class PictureWindow extends Component {
   state = {
     image: null,
+    imageUrl: '',
     url: '',
     progress: 0,
     uuid: '',
@@ -33,8 +36,14 @@ class PictureWindow extends Component {
 
       const image = e.target.files[0];
       const uuid = Date.now() + uuidv4();
-      setImage({ window, image, uuid });
-      this.setState(() => ({ image, uuid }));
+      const imageUrl = URL.createObjectURL(e.target.files[0]);
+      setImage({
+        window,
+        image,
+        uuid,
+        imageUrl,
+      });
+      // this.setState({ image: URL.createObjectURL(e.target.files[0]) });
     }
   };
 
@@ -70,26 +79,45 @@ class PictureWindow extends Component {
   };
 
   render() {
+    const {
+      window, window1Image, window2Image, window1ImgUrl, window2ImgUrl
+    } = this.props;
+    let imageScreen;
+    if (window === 'window1') {
+      imageScreen = (
+        <img
+          src={window1ImgUrl || 'http://via.placeholder.com/400x300'}
+          alt="Uploaded images"
+          height="300"
+          width="400"
+        />
+      );
+    } else {
+      imageScreen = (
+        <img
+          src={window2ImgUrl || 'http://via.placeholder.com/400x300'}
+          alt="Uploaded images"
+          height="300"
+          width="400"
+        />
+      );
+    }
+
     return (
       <div>
         <progress value={this.state.progress} max="100" />
         <br />
         <input type="file" onChange={this.handleChange} />
-        <button onClick={this.handleUpload}>Upload</button>
+        {window1Image && window2Image ? <button onClick={this.handleUpload}>Upload</button> : null}
         <br />
-        <img
-          src={this.state.url || 'http://via.placeholder.com/400x300'}
-          alt="Uploaded images"
-          height="300"
-          width="400"
-        />
+        {imageScreen}
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setImage: (window, image, uuid) => dispatch(setImage(window, image, uuid)),
+  setImage: (window, image, uuid, imageUrl) => dispatch(setImage(window, image, uuid, imageUrl)),
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -97,6 +125,8 @@ const mapStateToProps = createStructuredSelector({
   window2Image: selectWindow2Image,
   window1Url: selectWindow1Url,
   window2Url: selectWindow2Url,
+  window1ImgUrl: selectWindow1ImgUrl,
+  window2ImgUrl: selectWindow2ImgUrl,
   window1Progress: selectWindow1Progress,
   window2Progress: selectWindow2Progress,
   window1Uuid: selectWindow1Uuid,

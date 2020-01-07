@@ -27,6 +27,15 @@ export const selectWindow2Url = createSelector(
   [selectCardWindowReducer],
   (cardWindow) => cardWindow.window2Url,
 );
+export const selectWindow1ImgUrl = createSelector(
+  [selectCardWindowReducer],
+  (cardWindow) => cardWindow.window1ImgUrl,
+);
+
+export const selectWindow2ImgUrl = createSelector(
+  [selectCardWindowReducer],
+  (cardWindow) => cardWindow.window2ImgUrl,
+);
 
 export const selectWindow1Progress = createSelector(
   [selectCardWindowReducer],
