@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import cardWindowReducer from './cardWindow.reducer';
 
 const selectCardWindowReducer = (state) => state.cardWindow;
 
@@ -18,15 +17,6 @@ export const selectWindow2Image = createSelector(
   (cardWindow) => cardWindow.window2Image,
 );
 
-export const selectWindow1Url = createSelector(
-  [selectCardWindowReducer],
-  (cardWindow) => cardWindow.window1Url,
-);
-
-export const selectWindow2Url = createSelector(
-  [selectCardWindowReducer],
-  (cardWindow) => cardWindow.window2Url,
-);
 export const selectWindow1ImgUrl = createSelector(
   [selectCardWindowReducer],
   (cardWindow) => cardWindow.window1ImgUrl,
@@ -45,13 +35,4 @@ export const selectWindow1Progress = createSelector(
 export const selectWindow2Progress = createSelector(
   [selectCardWindowReducer],
   (cardWindow) => cardWindow.window2Progress,
-);
-export const selectWindow1Uuid = createSelector(
-  [selectCardWindowReducer],
-  (cardWindow) => cardWindow.window1Uuid,
-);
-
-export const selectWindow2Uuid = createSelector(
-  [selectCardWindowReducer],
-  (cardWindow) => cardWindow.window2Uuid,
 );

@@ -60,6 +60,18 @@ const PicturesSection = ({ window1Image, window2Image }) => {
       });
   };
 
+  const uploadImageUrl = (imageUrlArr) => db
+    .collection('pages')
+    .add({
+      imageUrl1: imageUrlArr[0],
+      imageUrl1Like: 0,
+      imageUrl2: imageUrlArr[1],
+      imageUrl2Like: 0,
+    })
+    .catch((err) => {
+      alert(err);
+    });
+
   const handleUpload = () => {
     if (!window1Image || !window2Image) {
       return alert('Please select images');
@@ -67,15 +79,9 @@ const PicturesSection = ({ window1Image, window2Image }) => {
     setDisableBtn({ disable: true, uploadSuccess: true, uploadTurn: 0 });
     previousUuid = undefined;
     Promise.all([uploadImage(window1Image), uploadImage(window2Image)])
-      .then((result) => {
-        db.collection('pages')
-          .doc('test')
-          .set({ result });
-        console.log({ result });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((result) => uploadImageUrl(result))
+      .then((docRef) => console.log(docRef.id))
+      .catch((err) => alert(err));
   };
 
   let uploadingBtn;
@@ -91,6 +97,7 @@ const PicturesSection = ({ window1Image, window2Image }) => {
 
   return (
     <>
+      {/* <progress value={this.state.progress} max="100" /> */}
       <div className="cardWrapper">
         <PictureWindow window="window1" />
         <PictureWindow window="window2" />
