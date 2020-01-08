@@ -15,8 +15,6 @@ import {
   selectWindow2ImgUrl,
   selectWindow1Progress,
   selectWindow2Progress,
-  selectWindow1Uuid,
-  selectWindow2Uuid,
 } from '../../redux/cardWindow/cardWindow.selectors';
 
 import { setImage } from '../../redux/cardWindow/cardWindow.action';
@@ -129,8 +127,6 @@ const mapStateToProps = createStructuredSelector({
   window2ImgUrl: selectWindow2ImgUrl,
   window1Progress: selectWindow1Progress,
   window2Progress: selectWindow2Progress,
-  window1Uuid: selectWindow1Uuid,
-  window2Uuid: selectWindow2Uuid,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PictureWindow);
