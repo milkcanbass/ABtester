@@ -1,4 +1,4 @@
-import { IMAGES_READY, SET_WINDOW1_IMAGE, SET_WINDOW2_IMAGE } from './cardWindow.types';
+import { SET_WINDOW1_IMAGE, SET_WINDOW2_IMAGE } from './pictureWindow.types';
 
 const INITIAL_STATE = {
   window1Image: null,
@@ -7,19 +7,12 @@ const INITIAL_STATE = {
   window2Image: null,
   window2ImgUrl: '',
   window2Progress: 0,
-  imagesReady: false,
 };
 
-const cardWindowReducer = (state = INITIAL_STATE, action) => {
+const pictureWindowReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case IMAGES_READY:
-      return {
-        ...state,
-        imagesReady: true,
-      };
     case SET_WINDOW1_IMAGE:
-      console.log('reducer', payload);
       return {
         ...state,
         window1Image: payload.image,
@@ -38,4 +31,4 @@ const cardWindowReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default cardWindowReducer;
+export default pictureWindowReducer;

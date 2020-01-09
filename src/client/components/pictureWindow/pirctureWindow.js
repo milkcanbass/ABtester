@@ -7,9 +7,9 @@ import { createStructuredSelector } from 'reselect';
 import {
   selectWindow1ImgUrl,
   selectWindow2ImgUrl,
-} from '../../redux/cardWindow/cardWindow.selectors';
+} from '../../redux/pictureWindow/pictureWindow.selectors';
 
-import { setImage } from '../../redux/cardWindow/cardWindow.action';
+import { setImage } from '../../redux/pictureWindow/pictureWindow.action';
 
 class PictureWindow extends Component {
   handleChange = (e) => {

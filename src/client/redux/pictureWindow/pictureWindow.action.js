@@ -1,12 +1,7 @@
-import { IMAGES_READY, SET_WINDOW1_IMAGE, SET_WINDOW2_IMAGE } from './cardWindow.types';
-
-export const setImageReady = (payload) => (dispatch) => {
-  dispatch({ type: IMAGES_READY, payload });
-};
+import { SET_WINDOW1_IMAGE, SET_WINDOW2_IMAGE } from './pictureWindow.types';
 
 export const setImage = (payload) => (dispatch) => {
   const { window, image, imageUrl } = payload;
-  console.log(imageUrl);
 
   if (window === 'window1') {
     dispatch({ type: SET_WINDOW1_IMAGE, payload: { image, imageUrl } });
