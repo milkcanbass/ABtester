@@ -9,22 +9,25 @@ import {
   selectWindow1Image,
   selectWindow2Image,
 } from '../../redux/pictureWindow/pictureWindow.selectors';
+import { modalOpen } from '../../redux/modal/modal.action';
 
 // Components
 import PictureWindow from '../pictureWindow/pirctureWindow';
 import MyButton from '../myButton/myButton';
+import MyModal from '../myModal/myModal';
 
 // firebase
 import { storage, db } from '../../../firebase/firebaseConfig';
 
 // util
 
-const PicturesSection = ({ window1Image, window2Image }) => {
+const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
   const [disableBtn, setDisableBtn] = useState({
     disable: false,
     uploadSuccess: true,
     uploadTurn: 0,
     progress: 0,
+    pageUrl: '',
   });
   let previousUuid;
   let progression;
@@ -90,7 +93,8 @@ const PicturesSection = ({ window1Image, window2Image }) => {
     previousUuid = undefined;
     Promise.all([uploadImage(window1Image), uploadImage(window2Image)])
       .then((result) => uploadImageUrl(result))
-      .then((docRef) => console.log(docRef.id))
+      .then((docRef) => setDisableBtn({ ...disableBtn, pageUrl: docRef.id }))
+      .then(() => modalOpen())
       .catch((err) => alert(err));
   };
 
@@ -107,6 +111,7 @@ const PicturesSection = ({ window1Image, window2Image }) => {
 
   return (
     <>
+      <MyModal pageUrl={disableBtn.pageUrl} />
       <progress value={disableBtn.progress} max="100" />
       <div className="cardWrapper">
         <PictureWindow window="window1" />
@@ -122,4 +127,8 @@ const mapStateToProps = createStructuredSelector({
   window2Image: selectWindow2Image,
 });
 
-export default connect(mapStateToProps)(PicturesSection);
+const mapDispatchToState = (dispatch) => ({
+  modalOpen: () => dispatch(modalOpen()),
+});
+
+export default connect(mapStateToProps, mapDispatchToState)(PicturesSection);

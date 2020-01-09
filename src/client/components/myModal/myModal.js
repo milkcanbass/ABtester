@@ -9,11 +9,11 @@ import { modalOpen, modalClose } from '../../redux/modal/modal.action';
 
 class MyModal extends React.Component {
   render() {
-    const { modalClose, modalOpen, visible } = this.props;
+    const {
+      modalClose, modalOpen, visible, pageUrl
+    } = this.props;
     return (
       <section>
-        <h1>React-Modal Examples</h1>
-        <input type="button" value="Open" onClick={() => modalOpen()} />
         <Modal
           visible={visible}
           width="400"
@@ -22,8 +22,9 @@ class MyModal extends React.Component {
           onClickAway={() => modalClose()}
         >
           <div>
-            <h1>Title</h1>
-            <p>Some Contents</p>
+            <h1>Here you go</h1>
+            <h1>{pageUrl}</h1>
+            <p>share this link to start voting.</p>
             <a href="javascript:void(0);" onClick={() => modalClose()}>
               Close
             </a>

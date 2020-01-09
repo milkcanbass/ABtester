@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Header extends Component {
   render() {
-    return <h1>AB tester</h1>;
+    return <h1>Which do you like?</h1>;
   }
 }
 
