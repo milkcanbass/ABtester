@@ -5,13 +5,24 @@ import Modal from 'react-awesome-modal';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectModalVisible } from '../../redux/modal/modal.selectors';
-import { modalOpen, modalClose } from '../../redux/modal/modal.action';
+import { modalClose } from '../../redux/modal/modal.action';
+
+// icons
+import copyIcon from '../../assets/copyicon.svg';
 
 class MyModal extends React.Component {
+  state = {
+    address: 'http',
+  };
+
+  copyToClipBoard = () => {
+    const url = document.getElementsByClassName('url').innerText;
+    console.log(url);
+  };
+
   render() {
-    const {
-      modalClose, modalOpen, visible, pageUrl
-    } = this.props;
+    const { modalClose, visible, pageUrl } = this.props;
+    const dispPageUrl = this.state.address + pageUrl;
     return (
       <section>
         <Modal
@@ -22,9 +33,14 @@ class MyModal extends React.Component {
           onClickAway={() => modalClose()}
         >
           <div>
-            <h1>Here you go</h1>
-            <h1>{pageUrl}</h1>
-            <p>share this link to start voting.</p>
+            <h1>share this link to start voiting!</h1>
+            <h1 className="url">{dispPageUrl}</h1>
+            <img
+              src={copyIcon}
+              style={{ height: '50px', width: '50px' }}
+              alt="copy icon"
+              onClick={(e) => this.copyToClipBoard()}
+            />
             <a href="javascript:void(0);" onClick={() => modalClose()}>
               Close
             </a>
@@ -36,7 +52,6 @@ class MyModal extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  modalOpen: () => dispatch(modalOpen()),
   modalClose: () => dispatch(modalClose()),
 });
 

@@ -64,7 +64,6 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
         // progression function
         (progression = (snapshot.bytesTransferred / snapshot.totalBytes) * 100),
         setDisableBtn({ ...disableBtn, progress: progression });
-        console.log(snapshot);
       })
       .then(() => {
         previousUuid = uuid;
