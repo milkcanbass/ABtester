@@ -10,6 +10,7 @@ import {
 } from '../../redux/pictureWindow/pictureWindow.selectors';
 
 import { setImage } from '../../redux/pictureWindow/pictureWindow.action';
+import MyButton from '../myButton/myButton';
 
 class PictureWindow extends Component {
   handleChange = (e) => {
@@ -27,12 +28,16 @@ class PictureWindow extends Component {
   };
 
   render() {
-    const { window, window1ImgUrl, window2ImgUrl } = this.props;
+    const {
+      window, window1ImgUrl, window2ImgUrl, surveyPage, imageUrl1, imageUrl2
+    } = this.props;
+    console.log(this.props);
+
     let imageScreen;
     if (window === 'window1') {
       imageScreen = (
         <img
-          src={window1ImgUrl || 'http://via.placeholder.com/400x300'}
+          src={surveyPage ? imageUrl1 : window1ImgUrl || 'http://via.placeholder.com/400x300'}
           alt="Uploaded images"
           height="300"
           width="400"
@@ -41,7 +46,7 @@ class PictureWindow extends Component {
     } else {
       imageScreen = (
         <img
-          src={window2ImgUrl || 'http://via.placeholder.com/400x300'}
+          src={surveyPage ? imageUrl2 : window2ImgUrl || 'http://via.placeholder.com/400x300'}
           alt="Uploaded images"
           height="300"
           width="400"
@@ -52,9 +57,10 @@ class PictureWindow extends Component {
     return (
       <div>
         <br />
-        <input type="file" onChange={this.handleChange} />
+        {surveyPage ? null : <input type="file" onChange={this.handleChange} />}
         <br />
         {imageScreen}
+        {surveyPage ? <MyButton like /> : null}
       </div>
     );
   }

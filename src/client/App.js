@@ -6,6 +6,7 @@ import './app.scss';
 import Header from './components/header/header';
 import PicturesSection from './components/picturesSection/picturesSection';
 import NotFound from './pages/notFound/notFound';
+import Survey from './pages/surveyPage/survey';
 
 export default class App extends Component {
   render() {
@@ -14,7 +15,8 @@ export default class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={PicturesSection} />
-          <Route exact path="/test" component={NotFound} />
+          <Route path="/survey/:survey" component={Survey} props="props" />
+          <Route exact path="*" component={NotFound} />
         </Switch>
       </div>
     );
