@@ -16,8 +16,13 @@ class MyModal extends React.Component {
   };
 
   copyToClipBoard = () => {
-    const url = document.getElementsByClassName('url').innerText;
-    console.log(url);
+    const pageUrl = document.querySelector('#url').innerText;
+
+    // Document.execCommand('copy');
+    navigator.clipboard
+      .writeText(pageUrl)
+      .then(() => console.log('coppied!'))
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -34,12 +39,13 @@ class MyModal extends React.Component {
         >
           <div>
             <h1>share this link to start voiting!</h1>
-            <h1 className="url">{dispPageUrl}</h1>
+            <section />
+            <h3 id="url">{dispPageUrl}</h3>
             <img
               src={copyIcon}
               style={{ height: '50px', width: '50px' }}
               alt="copy icon"
-              onClick={(e) => this.copyToClipBoard()}
+              onClick={() => this.copyToClipBoard()}
             />
             <a href="javascript:void(0);" onClick={() => modalClose()}>
               Close

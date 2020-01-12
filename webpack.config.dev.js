@@ -7,10 +7,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 console.log('dev');
 
 module.exports = {
+  mode: 'development',
+  target: 'web',
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -62,9 +65,11 @@ module.exports = {
   devServer: {
     port: 3000,
     open: true,
-    proxy: {
-      '/**': 'http://localhost:8080',
-    },
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, '../'),
+    // proxy: {
+    //   '/**': 'http://localhost:3000',
+    // },
   },
   resolve: {
     modules: ['src', 'node_modules'],
