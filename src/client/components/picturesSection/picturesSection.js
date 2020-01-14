@@ -15,6 +15,7 @@ import { modalOpen } from '../../redux/modal/modal.action';
 import PictureWindow from '../pictureWindow/pirctureWindow';
 import MyButton from '../myButton/myButton';
 import MyModal from '../myModal/myModal';
+import TextInput from '../textInput/textInput';
 
 // firebase
 import { storage, db } from '../../../firebase/firebaseConfig';
@@ -28,17 +29,29 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
     uploadTurn: 0,
     progress: 0,
     pageUrl: '',
+    title: '',
   });
   let previousUuid;
   let progression;
 
+  const onChange = (e) => {
+    setDisableBtn({
+      ...disableBtn,
+      title: e.target.value,
+    });
+    console.log(disableBtn);
+  };
+
   const uploadImageUrl = (imageUrlArr) => db
     .collection('pages')
     .add({
+      title: disableBtn.title,
       imageUrl1: imageUrlArr[0],
       imageUrl1Like: 0,
+      imageUrl1Comments: [],
       imageUrl2: imageUrlArr[1],
       imageUrl2Like: 0,
+      imageUrl2Comments: [],
     })
     .catch((err) => {
       alert(err);
@@ -116,6 +129,12 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
         <PictureWindow window="window1" />
         <PictureWindow window="window2" />
       </div>
+      <TextInput
+        placeholder="enter title"
+        name="title"
+        value={disableBtn.title}
+        onChange={(e) => onChange(e)}
+      />
       {uploadingBtn}
     </>
   );
