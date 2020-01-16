@@ -1,5 +1,4 @@
 .picWidWrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,5 +7,11 @@
 
   .fileInput {
     color: white;
+  }
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

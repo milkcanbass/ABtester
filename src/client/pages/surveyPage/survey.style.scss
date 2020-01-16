@@ -1,16 +1,21 @@
 .surveyWrapper {
   color: white;
-  position: relative;
+  // position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
 
   .picWidRapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 10px;
+    align-content: center;
+
+    .win1Wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .win2Wrapper {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

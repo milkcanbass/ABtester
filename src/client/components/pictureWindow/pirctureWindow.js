@@ -109,25 +109,27 @@ class PictureWindow extends Component {
       );
     }
 
-    return (
-      <div className="picWidWrapper">
-        {imageScreen}
-        {surveyPage ? null : (
-          <input className="fileInput" type="file" onChange={this.handleChange} />
-        )}
-        {surveyPage ? (
-          <div>
-            <TextInput like value={this.state.comment} onChange={(e) => this.onChange(e)}>
-              Like
-            </TextInput>
-            <MyButton onClick={(e) => this.submitComment(e)}>Submit</MyButton>
-          </div>
-        ) : null}
-        {surveyPage ? (
+    let infoSection;
+    if (surveyPage) {
+      infoSection = (
+        <div className="textWrapper">
+          <TextInput like value={this.state.comment} onChange={(e) => this.onChange(e)}>
+            Like
+          </TextInput>
+          <MyButton onClick={(e) => this.submitComment(e)}>Submit</MyButton>
           <MyButton like onClick={liked ? null : () => this.sendLike(window)}>
             {liked ? 'Thank you for your like!' : 'like'}
           </MyButton>
-        ) : null}
+        </div>
+      );
+    } else {
+      infoSection = <input className="fileInput" type="file" onChange={this.handleChange} />;
+    }
+
+    return (
+      <div className="picWidWrapper">
+        {imageScreen}
+        {infoSection}
       </div>
     );
   }

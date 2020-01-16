@@ -6,6 +6,8 @@ import { db } from '../../../firebase/firebaseConfig';
 
 // Component
 import PictureWindow from '../../components/pictureWindow/pirctureWindow';
+import CommentSection from '../../components/commentSection/commentSection';
+import ProgressBar from '../../components/progressBar/progressBar';
 
 class Survey extends Component {
   state = {
@@ -23,7 +25,7 @@ class Survey extends Component {
   componentDidMount() {
     const address = this.props.match.params.survey;
     const pageRef = db.collection('pages').doc(address);
-    console.log(pageRef);
+
     this.setState({
       ...this.state,
       address,
@@ -40,8 +42,6 @@ class Survey extends Component {
         imageUrl2Comments,
         title,
       } = doc.data();
-      console.log(doc.data());
-
       if (!doc.exists) {
         console.log('no pages exists');
       } else {
@@ -67,23 +67,30 @@ class Survey extends Component {
       imageUrl2Like,
       imageUrl2Comments,
       title,
-      address,
       pageRef,
     } = this.state;
+
     return (
       <div className="surveyWrapper">
         <h1>{title}</h1>
+        <ProgressBar />
         <div className="picWidRapper">
-          <h1>{imageUrl1Like}</h1>
-          <PictureWindow window="window1" surveyPage imageUrl1={imageUrl1} pageRef={pageRef} />
-          {imageUrl1Comments.map((comment) => (
-            <div>
-              <h3>{comment.comment}</h3>
-              <br />
-            </div>
-          ))}
-          <h1>{imageUrl2Like}</h1>
-          <PictureWindow window="window2" surveyPage imageUrl2={imageUrl2} pageRef={pageRef} />
+          <div className="win1Wrapper">
+            <h1>{imageUrl1Like}</h1>
+            <PictureWindow window="window1" surveyPage imageUrl1={imageUrl1} pageRef={pageRef} />
+            <CommentSection comments={imageUrl1Comments} />
+
+            {/* {imageUrl1Comments.map((comment) => (
+              <h1>{comment.comment}</h1>
+            ))} */}
+          </div>
+          <div className="win2Wrapper">
+            <h1>{imageUrl2Like}</h1>
+            <PictureWindow window="window2" surveyPage imageUrl2={imageUrl2} pageRef={pageRef} />
+            {/* {imageUrl2Comments.map((comment) => (
+              <h1>{comment.comment}</h1>
+            ))} */}
+          </div>
         </div>
       </div>
     );
