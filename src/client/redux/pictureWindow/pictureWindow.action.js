@@ -3,6 +3,7 @@ import {
   SET_WINDOW2_IMAGE,
   SET_PAGEURL,
   REMOVE_PAGEURL,
+  SET_PROGRESS,
 } from './pictureWindow.types';
 
 export const setImage = (payload) => (dispatch) => {
@@ -21,4 +22,8 @@ export const setPageUrl = (payload) => (dispatch) => {
 
 export const removePageUrl = (payload) => (dispatch) => {
   dispatch({ type: REMOVE_PAGEURL });
+};
+
+export const setProgress = (payload) => (dispatch) => {
+  dispatch({ type: SET_PROGRESS, payload });
 };

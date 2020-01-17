@@ -3,7 +3,6 @@ import './commentSection.style.scss';
 
 const CommentSection = (props) => {
   const { comments, window } = props;
-  console.log(props);
 
   const comArr = [];
 

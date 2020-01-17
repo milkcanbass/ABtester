@@ -27,12 +27,7 @@ export const selectWindow2ImgUrl = createSelector(
   (pictureWindow) => pictureWindow.window2ImgUrl,
 );
 
-export const selectWindow1Progress = createSelector(
+export const selectProgress = createSelector(
   [selectPictureWindowReducer],
-  (pictureWindow) => pictureWindow.window1Progress,
-);
-
-export const selectWindow2Progress = createSelector(
-  [selectPictureWindowReducer],
-  (pictureWindow) => pictureWindow.window2Progress,
+  (pictureWindow) => pictureWindow.progress,
 );

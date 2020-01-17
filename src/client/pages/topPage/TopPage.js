@@ -7,7 +7,6 @@ const TopPage = () => {
   const fetchTest = async () => {
     const res = await fetch(webApi);
     const data = await res.json();
-    console.log(data);
   };
 
   fetchTest();

@@ -44,7 +44,6 @@ class PictureWindow extends Component {
   };
 
   inputOnClick = (e) => {
-    console.log('input', e.target.value);
     e.target.value = null;
   };
 

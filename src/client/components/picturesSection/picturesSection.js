@@ -9,8 +9,9 @@ import {
   selectPageUrl,
   selectWindow1Image,
   selectWindow2Image,
+  selectProgress,
 } from '../../redux/pictureWindow/pictureWindow.selectors';
-import { setPageUrl } from '../../redux/pictureWindow/pictureWindow.action';
+import { setPageUrl, setProgress } from '../../redux/pictureWindow/pictureWindow.action';
 import { modalOpen } from '../../redux/modal/modal.action';
 
 // Components
@@ -18,6 +19,7 @@ import PictureWindow from '../pictureWindow/pirctureWindow';
 import MyButton from '../myButton/myButton';
 import MyModal from '../myModal/myModal';
 import TextInput from '../textInput/textInput';
+import LoadingCircle from '../loadingCircle/loadingCircle';
 
 // firebase
 import { storage, db } from '../../../firebase/firebaseConfig';
@@ -25,24 +27,27 @@ import { storage, db } from '../../../firebase/firebaseConfig';
 // util
 
 const PicturesSection = ({
-  window1Image, window2Image, modalOpen, setPageUrl, pageUrl
+  window1Image,
+  window2Image,
+  modalOpen,
+  setPageUrl,
+  pageUrl,
+  setProgress,
+  progress,
 }) => {
   const [disableBtn, setDisableBtn] = useState({
     disable: false,
     uploadSuccess: true,
     uploadTurn: 0,
-    progress: 0,
     title: '',
   });
   let previousUuid;
-  let progression;
 
   const onChange = (e) => {
     setDisableBtn({
       ...disableBtn,
       title: e.target.value,
     });
-    console.log(disableBtn);
   };
 
   const uploadImageUrl = (imageUrlArr) => db
@@ -73,8 +78,8 @@ const PicturesSection = ({
     return imageToServer
       .then((snapshot) => {
         // progression function
-        (progression = (snapshot.bytesTransferred / snapshot.totalBytes) * 100),
-        setDisableBtn({ ...disableBtn, progress: progression });
+        const progression = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progression);
       })
       .then(() => {
         previousUuid = uuid;
@@ -83,7 +88,6 @@ const PicturesSection = ({
           .child(uuid)
           .getDownloadURL();
       })
-      .then((data) => data)
       .catch((err) => {
         // if 1st upload failed
         if (disableBtn.uploadSucces && disableBtn.uploadTurn === 1) {
@@ -101,6 +105,8 @@ const PicturesSection = ({
     }
     setDisableBtn({ disable: true, uploadSuccess: true, uploadTurn: 0 });
     previousUuid = undefined;
+
+    // handling uploadImage and get pageUrl
     Promise.all([uploadImage(window1Image), uploadImage(window2Image)])
       .then((result) => uploadImageUrl(result))
       .then((docRef) => {
@@ -108,19 +114,20 @@ const PicturesSection = ({
         setPageUrl(url);
       })
       .then(() => modalOpen())
+      .then(() => setDisableBtn({
+        disable: false,
+        uploadSuccess: true,
+        uploadTurn: 0,
+        title: '',
+      }),)
       .catch((err) => alert(err));
-    console.log(disableBtn);
   };
 
-  let uploadingBtn;
+  let btnMes;
   if (window1Image && window2Image) {
-    uploadingBtn = (
-      <MyButton onClick={(e) => handleUpload()} disabled={disableBtn.disable}>
-        Push to upload
-      </MyButton>
-    );
+    btnMes = 'UPLOAD';
   } else {
-    uploadingBtn = <MyButton onClick={(e) => handleUpload()}>Please choose image</MyButton>;
+    btnMes = 'SELECT IMAGES';
   }
 
   return (
@@ -131,9 +138,7 @@ const PicturesSection = ({
           <PictureWindow window="window1" />
           <PictureWindow window="window2" />
         </div>
-        <div className="uploadProgress">
-          <progress value={disableBtn.progress} max="100" />
-        </div>
+        <div className="uploadProgress">{/* <progress value={progress} max="100" /> */}</div>
         <div className="inputSectionWrapper">
           <TextInput
             placeholder="enter title"
@@ -141,7 +146,9 @@ const PicturesSection = ({
             value={disableBtn.title}
             onChange={(e) => onChange(e)}
           />
-          {uploadingBtn}
+          <MyButton onClick={(e) => handleUpload()} disabled={disableBtn.disable}>
+            {btnMes}
+          </MyButton>
         </div>
       </div>
     </>
@@ -152,11 +159,13 @@ const mapStateToProps = createStructuredSelector({
   window1Image: selectWindow1Image,
   window2Image: selectWindow2Image,
   pageUrl: selectPageUrl,
+  progress: selectProgress,
 });
 
 const mapDispatchToState = (dispatch) => ({
   modalOpen: () => dispatch(modalOpen()),
   setPageUrl: (url) => dispatch(setPageUrl(url)),
+  setProgress: (num) => dispatch(setProgress(num)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(PicturesSection);
