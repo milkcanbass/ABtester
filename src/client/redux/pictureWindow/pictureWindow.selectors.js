@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 
 const selectPictureWindowReducer = (state) => state.pictureWindow;
 
+export const selectPageUrl = createSelector(
+  [selectPictureWindowReducer],
+  (pictureWindow) => pictureWindow.pageUrl,
+);
+
 export const selectWindow1Image = createSelector(
   [selectPictureWindowReducer],
   (pictureWindow) => pictureWindow.window1Image,

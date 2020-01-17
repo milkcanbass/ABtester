@@ -2,12 +2,15 @@
   position: relative;
   height: 20px;
   width: 350px;
-  border-radius: 50px;
-  border: 1px solid #333;
+  border-radius: 0px;
+  border: 1px solid white;
+  background-color: #ff2e63;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .filler {
-  background: #1da598;
+  background: #08d9d6;
   height: 100%;
   border-radius: inherit;
   transition: width 0.2s ease-in;

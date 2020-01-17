@@ -11,14 +11,14 @@ import Survey from './pages/surveyPage/survey';
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <>
         <Header />
         <Switch>
           <Route exact path="/" component={PicturesSection} />
           <Route path="/survey/:survey" component={Survey} props="props" />
           <Route exact path="*" component={NotFound} />
         </Switch>
-      </div>
+      </>
     );
   }
 }

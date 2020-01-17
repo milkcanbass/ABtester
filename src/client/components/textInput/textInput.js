@@ -1,18 +1,22 @@
 import React from 'react';
 import './textInput.style.scss';
 
+// component
+
 const TextInput = (props) => {
   const {
     label, onChange, value, placeholder
   } = props;
 
   return (
-    <div>
-      <input type="text" value={value} placeholder={placeholder} onChange={onChange} />
-      {/* <label htmlFor={id} className={error && 'error'}>
-        {error || label}
-      </label> */}
-    </div>
+    <input
+      type="text"
+      className="inputForm"
+      label={label}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
   );
 };
 

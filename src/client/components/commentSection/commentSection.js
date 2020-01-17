@@ -1,7 +1,9 @@
 import React from 'react';
+import './commentSection.style.scss';
 
 const CommentSection = (props) => {
-  const { comments } = props;
+  const { comments, window } = props;
+  console.log(props);
 
   const comArr = [];
 
@@ -9,6 +11,14 @@ const CommentSection = (props) => {
     comArr.push(comments[i]);
   }
 
-  return comArr.map((comment) => <div>{comment.comment}</div>);
+  return (
+    <div className="commentWrapper">
+      {comArr.map((comment) => (
+        <div className={window === 'window1' ? 'speechBubble1' : 'speechBubble2'}>
+          {comment.comment}
+        </div>
+      ))}
+    </div>
+  );
 };
 export default CommentSection;

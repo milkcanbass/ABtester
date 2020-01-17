@@ -6,9 +6,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import uuidv4 from 'uuid/v4';
 import {
+  selectPageUrl,
   selectWindow1Image,
   selectWindow2Image,
 } from '../../redux/pictureWindow/pictureWindow.selectors';
+import { setPageUrl } from '../../redux/pictureWindow/pictureWindow.action';
 import { modalOpen } from '../../redux/modal/modal.action';
 
 // Components
@@ -22,13 +24,14 @@ import { storage, db } from '../../../firebase/firebaseConfig';
 
 // util
 
-const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
+const PicturesSection = ({
+  window1Image, window2Image, modalOpen, setPageUrl, pageUrl
+}) => {
   const [disableBtn, setDisableBtn] = useState({
     disable: false,
     uploadSuccess: true,
     uploadTurn: 0,
     progress: 0,
-    pageUrl: '',
     title: '',
   });
   let previousUuid;
@@ -56,11 +59,6 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
     .catch((err) => {
       alert(err);
     });
-
-  // const progressBar = (imageToServer) => imageToServer.on('state_changed', (snapshot) => {
-  //   (progression = (snapshot.bytesTransferred / snapshot.totalBytes) * 100),
-  //   setDisableBtn({ ...disableBtn, progress: progression });
-  // });
 
   const uploadImage = (image) => {
     // For first upload failed
@@ -105,9 +103,13 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
     previousUuid = undefined;
     Promise.all([uploadImage(window1Image), uploadImage(window2Image)])
       .then((result) => uploadImageUrl(result))
-      .then((docRef) => setDisableBtn({ ...disableBtn, pageUrl: docRef.id }))
+      .then((docRef) => {
+        const url = docRef.id;
+        setPageUrl(url);
+      })
       .then(() => modalOpen())
       .catch((err) => alert(err));
+    console.log(disableBtn);
   };
 
   let uploadingBtn;
@@ -123,19 +125,25 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
 
   return (
     <>
-      <MyModal pageUrl={disableBtn.pageUrl} />
-      <progress value={disableBtn.progress} max="100" />
-      <div className="cardWrapper">
-        <PictureWindow window="window1" />
-        <PictureWindow window="window2" />
+      <MyModal pageUrl={pageUrl} />
+      <div className="pageWrapper">
+        <div className="cardWrapper">
+          <PictureWindow window="window1" />
+          <PictureWindow window="window2" />
+        </div>
+        <div className="uploadProgress">
+          <progress value={disableBtn.progress} max="100" />
+        </div>
+        <div className="inputSectionWrapper">
+          <TextInput
+            placeholder="enter title"
+            name="title"
+            value={disableBtn.title}
+            onChange={(e) => onChange(e)}
+          />
+          {uploadingBtn}
+        </div>
       </div>
-      <TextInput
-        placeholder="enter title"
-        name="title"
-        value={disableBtn.title}
-        onChange={(e) => onChange(e)}
-      />
-      {uploadingBtn}
     </>
   );
 };
@@ -143,10 +151,12 @@ const PicturesSection = ({ window1Image, window2Image, modalOpen }) => {
 const mapStateToProps = createStructuredSelector({
   window1Image: selectWindow1Image,
   window2Image: selectWindow2Image,
+  pageUrl: selectPageUrl,
 });
 
 const mapDispatchToState = (dispatch) => ({
   modalOpen: () => dispatch(modalOpen()),
+  setPageUrl: (url) => dispatch(setPageUrl(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(PicturesSection);

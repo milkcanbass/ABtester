@@ -72,24 +72,18 @@ class Survey extends Component {
 
     return (
       <div className="surveyWrapper">
+        <ProgressBar imageUrl1Like={imageUrl1Like} imageUrl2Like={imageUrl2Like} />
         <h1>{title}</h1>
-        <ProgressBar />
         <div className="picWidRapper">
           <div className="win1Wrapper">
             <h1>{imageUrl1Like}</h1>
             <PictureWindow window="window1" surveyPage imageUrl1={imageUrl1} pageRef={pageRef} />
-            <CommentSection comments={imageUrl1Comments} />
-
-            {/* {imageUrl1Comments.map((comment) => (
-              <h1>{comment.comment}</h1>
-            ))} */}
+            <CommentSection window="window1" comments={imageUrl1Comments} />
           </div>
           <div className="win2Wrapper">
             <h1>{imageUrl2Like}</h1>
             <PictureWindow window="window2" surveyPage imageUrl2={imageUrl2} pageRef={pageRef} />
-            {/* {imageUrl2Comments.map((comment) => (
-              <h1>{comment.comment}</h1>
-            ))} */}
+            <CommentSection window="window2" comments={imageUrl2Comments} />
           </div>
         </div>
       </div>

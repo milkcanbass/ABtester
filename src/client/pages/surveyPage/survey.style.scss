@@ -1,8 +1,9 @@
 .surveyWrapper {
   color: white;
-  // position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   .picWidRapper {
     display: flex;

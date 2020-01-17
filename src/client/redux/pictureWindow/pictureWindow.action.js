@@ -1,4 +1,9 @@
-import { SET_WINDOW1_IMAGE, SET_WINDOW2_IMAGE } from './pictureWindow.types';
+import {
+  SET_WINDOW1_IMAGE,
+  SET_WINDOW2_IMAGE,
+  SET_PAGEURL,
+  REMOVE_PAGEURL,
+} from './pictureWindow.types';
 
 export const setImage = (payload) => (dispatch) => {
   const { window, image, imageUrl } = payload;
@@ -8,4 +13,12 @@ export const setImage = (payload) => (dispatch) => {
   } else {
     dispatch({ type: SET_WINDOW2_IMAGE, payload: { image, imageUrl } });
   }
+};
+
+export const setPageUrl = (payload) => (dispatch) => {
+  dispatch({ type: SET_PAGEURL, payload });
+};
+
+export const removePageUrl = (payload) => (dispatch) => {
+  dispatch({ type: REMOVE_PAGEURL });
 };

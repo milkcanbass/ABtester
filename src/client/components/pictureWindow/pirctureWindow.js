@@ -7,6 +7,8 @@ import { createStructuredSelector } from 'reselect';
 import {
   selectWindow1ImgUrl,
   selectWindow2ImgUrl,
+  selectWindow1Image,
+  selectWindow2Image,
 } from '../../redux/pictureWindow/pictureWindow.selectors';
 
 import { setImage } from '../../redux/pictureWindow/pictureWindow.action';
@@ -25,10 +27,13 @@ class PictureWindow extends Component {
   };
 
   handleChange = (e) => {
+    let image;
+    if (e.target.files[0] === image) {
+      image = null;
+    }
     if (e.target.files[0]) {
       const { window, setImage } = this.props;
-
-      const image = e.target.files[0];
+      image = e.target.files[0];
       const imageUrl = URL.createObjectURL(e.target.files[0]);
       setImage({
         window,
@@ -36,6 +41,11 @@ class PictureWindow extends Component {
         imageUrl,
       });
     }
+  };
+
+  inputOnClick = (e) => {
+    console.log('input', e.target.value);
+    e.target.value = null;
   };
 
   sendLike = () => {
@@ -123,7 +133,14 @@ class PictureWindow extends Component {
         </div>
       );
     } else {
-      infoSection = <input className="fileInput" type="file" onChange={this.handleChange} />;
+      infoSection = (
+        <input
+          className="fileInput"
+          type="file"
+          onClick={(e) => this.inputOnClick(e)}
+          onChange={this.handleChange}
+        />
+      );
     }
 
     return (
@@ -142,6 +159,8 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   window1ImgUrl: selectWindow1ImgUrl,
   window2ImgUrl: selectWindow2ImgUrl,
+  window1Img: selectWindow1Image,
+  window2Img: selectWindow2Image,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PictureWindow);
