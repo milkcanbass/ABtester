@@ -7,7 +7,6 @@ import { db } from '../../../firebase/firebaseConfig';
 // Component
 import PictureWindow from '../../components/pictureWindow/pirctureWindow';
 import CommentSection from '../../components/commentSection/commentSection';
-import ProgressBar from '../../components/progressBar/progressBar';
 
 class Survey extends Component {
   state = {
@@ -70,9 +69,22 @@ class Survey extends Component {
       pageRef,
     } = this.state;
 
+    // background color
+    const talLike = imageUrl1Like + imageUrl2Like;
+    const like2Percentage = (imageUrl2Like / talLike) * 100;
+    let backgroundWidth;
+    if (talLike === 0) {
+      backgroundWidth = '50vw';
+    } else {
+      backgroundWidth = `${like2Percentage}vw`;
+    }
+
     return (
       <div className="surveyWrapper">
-        <ProgressBar imageUrl1Like={imageUrl1Like} imageUrl2Like={imageUrl2Like} />
+        <div
+          className="surveyBackground"
+          style={{ height: '100vh', width: backgroundWidth, transition: 'all 0.5' }}
+        />
         <h1>{title}</h1>
         <div className="picWidRapper">
           <div className="win1Wrapper">

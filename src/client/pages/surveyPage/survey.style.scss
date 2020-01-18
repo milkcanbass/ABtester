@@ -3,20 +3,39 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+
+  .surveyBackground {
+    position: fixed;
+    background-color: #ff2e63;
+    right: 0;
+    transition: 0.5 all;
+  }
 
   .picWidRapper {
+    position: relative;
     display: flex;
     justify-content: center;
     align-content: center;
+    top: 20px;
 
     .win1Wrapper {
       display: flex;
       flex-direction: column;
+      border: 3px #eaeaea solid;
+      border-radius: 10%;
+      -webkit-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+      -moz-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+      box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
     }
     .win2Wrapper {
       display: flex;
       flex-direction: column;
+      border: 3px #eaeaea solid;
+      border-radius: 10%;
+      -webkit-box-shadow: 10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+      -moz-box-shadow: 10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+      box-shadow: 10px 10px 5px 0px rgba(176, 169, 176, 0.25);
     }
   }
 }
