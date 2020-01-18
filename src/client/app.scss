@@ -5,6 +5,17 @@
 
 body {
   font-family: 'Kulim Park', sans-serif;
-  background-color: white;
-  color: #eaeaea;
+  background-color: #08d9d6;
+  color: #252a34;
+}
+
+.mainWrapper {
+  display: flex;
+  justify-content: center;
+
+  .contentsWrapper {
+    // width: 75vw;
+    min-height: 100vh;
+    background-color: #eaeaea;
+  }
 }

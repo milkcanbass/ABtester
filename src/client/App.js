@@ -3,21 +3,23 @@ import { Route, Switch } from 'react-router-dom';
 import './app.scss';
 
 // Components
-import Header from './components/header/header';
-import PicturesSection from './components/picturesSection/picturesSection';
 import NotFound from './pages/notFound/notFound';
 import Survey from './pages/surveyPage/survey';
+import TopPage from './pages/topPage/TopPage';
 
 export default class App extends Component {
   render() {
     return (
       <>
-        <Header />
+        {/* <div className="mainWrapper">
+          <div className="contentsWrapper"> */}
         <Switch>
-          <Route exact path="/" component={PicturesSection} />
+          <Route exact path="/" component={TopPage} />
           <Route path="/survey/:survey" component={Survey} props="props" />
           <Route exact path="*" component={NotFound} />
         </Switch>
+        {/* </div> */}
+        {/* </div> */}
       </>
     );
   }

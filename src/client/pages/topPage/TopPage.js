@@ -1,21 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './TopPage.styles.scss';
+import TopComponent from '../../components/topComponent/topComponent';
+import PictureSection from '../../components/picturesSection/picturesSection';
 
-const TopPage = () => {
-  const webApi = 'https://swapi.co/api/people/1';
-
-  const fetchTest = async () => {
-    const res = await fetch(webApi);
-    const data = await res.json();
-  };
-
-  fetchTest();
-
-  return (
-    <>
-      <div className="hello">Hello</div>
-      <div className="test" />
-    </>
-  );
-};
+const TopPage = () => (
+  <>
+    <TopComponent />
+    {/* <PictureSection /> */}
+  </>
+);
 export default TopPage;
