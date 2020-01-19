@@ -20,6 +20,9 @@ import TextInput from '../textInput/textInput';
 // fireStore
 import firebase, { db } from '../../../firebase/firebaseConfig';
 
+// image
+import svgImg from '../../assets/heart.svg';
+
 class PictureWindow extends Component {
   state = {
     liked: false,
@@ -83,13 +86,17 @@ class PictureWindow extends Component {
     const addComment = firebase.firestore.FieldValue.arrayUnion({ comment, time });
     const docRef = this.props.pageRef;
 
+    // Check if comment is empty
+    if (comment.replace(/\s/g, '') === '') {
+      return null;
+    }
     // Update read count. one time like per access
-
     if (window === 'window1') {
       docRef.update({ imageUrl1Comments: addComment });
     } else {
       docRef.update({ imageUrl2Comments: addComment });
     }
+    this.setState({ ...this.state, comment: '' });
   };
 
   render() {
@@ -103,8 +110,7 @@ class PictureWindow extends Component {
         <img
           src={surveyPage ? imageUrl1 : window1ImgUrl || 'http://via.placeholder.com/400x300'}
           alt="Uploaded images"
-          height="300"
-          width="400"
+          className="imageScreen"
         />
       );
     } else {
@@ -112,8 +118,7 @@ class PictureWindow extends Component {
         <img
           src={surveyPage ? imageUrl2 : window2ImgUrl || 'http://via.placeholder.com/400x300'}
           alt="Uploaded images"
-          height="300"
-          width="400"
+          className="imageScreen"
         />
       );
     }
@@ -122,13 +127,16 @@ class PictureWindow extends Component {
     if (surveyPage) {
       infoSection = (
         <div className="textWrapper">
-          <TextInput like value={this.state.comment} onChange={(e) => this.onChange(e)}>
-            Like
-          </TextInput>
+          <TextInput
+            placeholder="Add a comment"
+            value={this.state.comment}
+            onChange={(e) => this.onChange(e)}
+          />
           <MyButton onClick={(e) => this.submitComment(e)}>Submit</MyButton>
           <MyButton like onClick={liked ? null : () => this.sendLike(window)}>
             {liked ? 'Thank you for your like!' : 'like'}
           </MyButton>
+          <img src={svgImg} className="heartIcon" alt="heart icon" />
         </div>
       );
     } else {

@@ -3,6 +3,5 @@
 exports[`TopPageSnapshot should render correctly in 'debug' mode 1`] = `
 <Fragment>
   <TopComponent />
-  <Connect(PicturesSection) />
 </Fragment>
 `;

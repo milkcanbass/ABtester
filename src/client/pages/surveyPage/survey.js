@@ -72,19 +72,10 @@ class Survey extends Component {
     // background color
     const talLike = imageUrl1Like + imageUrl2Like;
     const like2Percentage = (imageUrl2Like / talLike) * 100;
-    let backgroundWidth;
-    if (talLike === 0) {
-      backgroundWidth = '50vw';
-    } else {
-      backgroundWidth = `${like2Percentage}vw`;
-    }
 
     return (
       <div className="surveyWrapper">
-        <div
-          className="surveyBackground"
-          style={{ height: '100vh', width: backgroundWidth, transition: 'all 0.5' }}
-        />
+        {/* <div className="surveyBackground" style={{ height: '100vh', width: '50vw' }} /> */}
         <h1>{title}</h1>
         <div className="picWidRapper">
           <div className="win1Wrapper">

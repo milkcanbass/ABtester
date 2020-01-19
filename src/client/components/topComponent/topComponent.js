@@ -6,15 +6,24 @@ import './topComponent.style.scss';
 import PicturesSection from '../picturesSection/picturesSection';
 
 const TopComponent = () => (
-  <div className="testtest">
+  <div className="topComponentWrapper">
     <div className="topImage">
-      <img src={img1} alt="topImage" />
-      <div className="testSection">
-        <h1>Which do you like?</h1>
-        <p>ipsgegaijb jiaa pjgap grijmia ijfvfbk</p>
+      <div className="imageContainer">
+        <img src={img1} alt="topImage" />
+      </div>
+      <div className="textSection">
+        <div className="title">Which do you like?</div>
+        <div className="description">
+          <p>Instant AB test service for you.</p>
+          <p>We will create private survey page.</p>
+          <p>The only thing you need to do is to upload 2 images and title,</p>
+          <p>and share the url to your friends.</p>
+        </div>
       </div>
     </div>
-    <PicturesSection />
+    <div className="topPicSection">
+      <PicturesSection />
+    </div>
   </div>
 );
 
