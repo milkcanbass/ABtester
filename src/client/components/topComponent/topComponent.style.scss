@@ -22,9 +22,22 @@
     .textSection {
       position: absolute;
       color: white;
-      font-size: 3em;
+
       top: 50px;
       left: 20px;
+
+      .title {
+        color: #263f44;
+        font-size: 3em;
+        font-family: 'Abril Fatface', cursive;
+      }
+
+      .description {
+        padding: 20px 0;
+        p {
+          font-size: 1em;
+        }
+      }
     }
   }
   .topPicSection {
@@ -33,12 +46,5 @@
     left: 20px;
     display: flex;
     flex-direction: column;
-
-    .description {
-      padding: 20px 0;
-      p {
-        font-size: 1.5em;
-      }
-    }
   }
 }

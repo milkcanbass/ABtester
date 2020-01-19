@@ -14,10 +14,10 @@ const TopComponent = () => (
       <div className="textSection">
         <div className="title">Which do you like?</div>
         <div className="description">
-          <p>Instant AB test service for you.</p>
-          <p>We will create private survey page.</p>
-          <p>The only thing you need to do is to upload 2 images and title,</p>
-          <p>and share the url to your friends.</p>
+          <p>
+            Instant AB test service for you. We will create a private survey page. The only thing
+            you need to do is to upload 2 images and title, and share the url to your friends.
+          </p>
         </div>
       </div>
     </div>
