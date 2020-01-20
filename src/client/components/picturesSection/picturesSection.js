@@ -19,12 +19,9 @@ import PictureWindow from '../pictureWindow/pirctureWindow';
 import MyButton from '../myButton/myButton';
 import MyModal from '../myModal/myModal';
 import TextInput from '../textInput/textInput';
-import LoadingCircle from '../loadingCircle/loadingCircle';
 
 // firebase
 import { storage, db } from '../../../firebase/firebaseConfig';
-
-// util
 
 const PicturesSection = ({
   window1Image,

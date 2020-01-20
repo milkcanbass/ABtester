@@ -22,7 +22,10 @@ const TopComponent = () => (
       </div>
     </div>
     <div className="topPicSection">
-      <PicturesSection />
+      <div className="topPicBackground">
+        <h1>hello</h1>
+        <PicturesSection />
+      </div>
     </div>
   </div>
 );

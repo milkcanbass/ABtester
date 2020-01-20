@@ -110,7 +110,7 @@ class PictureWindow extends Component {
         <img
           src={surveyPage ? imageUrl1 : window1ImgUrl || 'http://via.placeholder.com/400x300'}
           alt="Uploaded images"
-          className="imageScreen"
+          className={surveyPage ? 'imageScreen' : 'uploadImageScreen'}
         />
       );
     } else {
@@ -118,7 +118,7 @@ class PictureWindow extends Component {
         <img
           src={surveyPage ? imageUrl2 : window2ImgUrl || 'http://via.placeholder.com/400x300'}
           alt="Uploaded images"
-          className="imageScreen"
+          className={surveyPage ? 'imageScreen' : 'uploadImageScreen'}
         />
       );
     }
@@ -141,12 +141,15 @@ class PictureWindow extends Component {
       );
     } else {
       infoSection = (
-        <input
-          className="fileInput"
-          type="file"
-          onClick={(e) => this.inputOnClick(e)}
-          onChange={this.handleChange}
-        />
+        <label className="custom-file-upload">
+          <input
+            className="fileInput"
+            type="file"
+            onClick={(e) => this.inputOnClick(e)}
+            onChange={this.handleChange}
+          />
+          <p>Upload</p>
+        </label>
       );
     }
 
