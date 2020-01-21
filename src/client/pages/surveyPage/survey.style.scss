@@ -4,38 +4,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .surveyBackground {
-    position: fixed;
-    background-color: #ff2e63;
-    right: 0;
-    transition: 0.5 all;
+  background-color: rgba(176, 169, 176, 0.25);
+  .title {
+    font-size: 4em;
+    color: #263f44;
+    font-family: 'Abril Fatface', cursive;
   }
 
   .picWidRapper {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    top: 20px;
+    background-color: whitesmoke;
+    border-radius: 10%;
+    -webkit-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+    -moz-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+    box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
 
-    .win1Wrapper {
-      display: flex;
-      flex-direction: column;
-      border: 3px #eaeaea solid;
-      border-radius: 10%;
-      -webkit-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-      -moz-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-      box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+    .centerLine {
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      width: 3px;
+      height: 300px;
+      background-image: linear-gradient(
+        135deg,
+        rgba(176, 169, 176, 0.75),
+        rgba(176, 169, 176, 0.05)
+      );
     }
-    .win2Wrapper {
+
+    .wrapWrap {
+      position: relative;
       display: flex;
-      flex-direction: column;
-      border: 3px #eaeaea solid;
-      border-radius: 10%;
-      -webkit-box-shadow: 10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-      -moz-box-shadow: 10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-      box-shadow: 10px 10px 5px 0px rgba(176, 169, 176, 0.25);
+      top: 50px;
+      .win1Wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      .win2Wrapper {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 }

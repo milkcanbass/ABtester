@@ -75,18 +75,30 @@ class Survey extends Component {
 
     return (
       <div className="surveyWrapper">
-        {/* <div className="surveyBackground" style={{ height: '100vh', width: '50vw' }} /> */}
-        <h1>{title}</h1>
+        <h1 className="title">{title}</h1>
         <div className="picWidRapper">
-          <div className="win1Wrapper">
-            <h1>{imageUrl1Like}</h1>
-            <PictureWindow window="window1" surveyPage imageUrl1={imageUrl1} pageRef={pageRef} />
-            <CommentSection window="window1" comments={imageUrl1Comments} />
-          </div>
-          <div className="win2Wrapper">
-            <h1>{imageUrl2Like}</h1>
-            <PictureWindow window="window2" surveyPage imageUrl2={imageUrl2} pageRef={pageRef} />
-            <CommentSection window="window2" comments={imageUrl2Comments} />
+          <div className="wrapWrap">
+            <div className="win1Wrapper">
+              <div className="centerLine" />
+              <PictureWindow
+                window="window1"
+                surveyPage
+                imageUrl1Like={imageUrl1Like}
+                imageUrl1={imageUrl1}
+                pageRef={pageRef}
+              />
+              <CommentSection window="window1" comments={imageUrl1Comments} />
+            </div>
+            <div className="win2Wrapper">
+              <PictureWindow
+                window="window2"
+                surveyPage
+                imageUrl2Like={imageUrl2Like}
+                imageUrl2={imageUrl2}
+                pageRef={pageRef}
+              />
+              <CommentSection window="window2" comments={imageUrl2Comments} />
+            </div>
           </div>
         </div>
       </div>
