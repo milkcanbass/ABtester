@@ -11,15 +11,11 @@ export default class App extends Component {
   render() {
     return (
       <>
-        {/* <div className="mainWrapper">
-          <div className="contentsWrapper"> */}
         <Switch>
           <Route exact path="/" component={TopPage} />
           <Route path="/survey/:survey" component={Survey} props="props" />
           <Route exact path="*" component={NotFound} />
         </Switch>
-        {/* </div> */}
-        {/* </div> */}
       </>
     );
   }

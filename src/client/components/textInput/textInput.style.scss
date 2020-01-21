@@ -1,12 +1,12 @@
 .textWrapper {
-  margin: 15px 0;
+  margin: 10px 0;
 }
 .inputForm {
-  width: 400px;
+  width: 100%;
   border: none;
   outline: none;
   padding: 10px;
-  font-size: 1em;
+  font-size: 2em;
   color: #676767;
   transition: border 0.5s;
   -webkit-transition: border 0.5s;
@@ -18,6 +18,6 @@
   box-sizing: border-box;
 
   &:focus {
-    border: solid 5px #77bde0;
+    border: solid 3px #015668;
   }
 }

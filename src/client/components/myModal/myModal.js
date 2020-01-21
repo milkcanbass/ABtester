@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-awesome-modal';
 
+import './myModal.style.scss';
+
 // redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -37,12 +39,14 @@ class MyModal extends React.Component {
           effect="fadeInUp"
           onClickAway={() => modalClose()}
         >
-          <div>
-            <h1>share this link to start voiting!</h1>
+          <div className="modalWrapper">
+            <h1>Thank you for your upload!</h1>
+            <p>We created a page for you. Share this url.</p>
             <section />
             <h3 id="url">{dispPageUrl}</h3>
             <img
               src={copyIcon}
+              className="copyIcon"
               style={{ height: '50px', width: '50px' }}
               alt="copy icon"
               onClick={() => this.copyToClipBoard()}

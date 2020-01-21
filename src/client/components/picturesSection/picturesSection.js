@@ -124,7 +124,7 @@ const PicturesSection = ({
   if (window1Image && window2Image) {
     btnMes = 'UPLOAD';
   } else {
-    btnMes = 'SELECT IMAGES';
+    btnMes = 'PLEASE SELECT IMAGES';
   }
 
   return (
@@ -138,7 +138,7 @@ const PicturesSection = ({
         <div className="uploadProgress">{/* <progress value={progress} max="100" /> */}</div>
         <div className="inputSectionWrapper">
           <TextInput
-            placeholder="enter title"
+            placeholder="What's your question?"
             name="title"
             value={disableBtn.title}
             onChange={(e) => onChange(e)}

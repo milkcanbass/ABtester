@@ -2,6 +2,10 @@
 
 exports[`TopPageSnapshot should render correctly in 'debug' mode 1`] = `
 <Fragment>
-  <TopComponent />
+  <div
+    className="topPageWrapper"
+  >
+    <TopComponent />
+  </div>
 </Fragment>
 `;

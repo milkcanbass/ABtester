@@ -6,25 +6,29 @@ import './topComponent.style.scss';
 import PicturesSection from '../picturesSection/picturesSection';
 
 const TopComponent = () => (
-  <div className="topComponentWrapper">
-    <div className="topImage">
-      <div className="imageContainer">
-        <img src={img1} alt="topImage" />
-      </div>
-      <div className="textSection">
-        <div className="title">Which do you like?</div>
-        <div className="description">
-          <p>
-            Instant AB test service for you. We will create a private survey page. The only thing
-            you need to do is to upload 2 images and title, and share the url to your friends.
-          </p>
+  <div className="topComponentHighLevel">
+    <div className="topComponentWrapper">
+      <div className="topImage">
+        <div className="imageContainer">
+          <img src={img1} alt="topImage" />
+        </div>
+        <div className="textSection">
+          <div className="title">Which do you like?</div>
+          <div className="description">
+            <h3>
+              Free AB test service. We will create a private survey page. The only thing you need to
+              do is to upload 2 images and title, and share the url to your friends.
+            </h3>
+          </div>
         </div>
       </div>
-    </div>
-    <div className="topPicSection">
-      <div className="topPicBackground">
-        <h1>hello</h1>
-        <PicturesSection />
+      <div className="topPicSection">
+        <div className="topPicBackground">
+          <h3>Upload images.(max size 1MB)</h3>
+          <div className="picSecWrapper">
+            <PicturesSection />
+          </div>
+        </div>
       </div>
     </div>
   </div>

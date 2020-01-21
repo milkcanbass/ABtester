@@ -1,4 +1,17 @@
 .mybutton {
-  width: 60px;
-  height: 60px;
+  margin: 10px 0;
+  padding: 10px 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  background-color: #263f44;
+  color: #fff1cf;
+
+  cursor: pointer;
+  transition: all 0.3;
+
+  &:hover {
+    background-color: #015668;
+    transition: all 0.5s ease-out;
+  }
 }

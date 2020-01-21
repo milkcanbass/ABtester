@@ -1,0 +1,31 @@
+.modalWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 0.5em;
+    margin-bottom: 10px;
+  }
+
+  a {
+    position: absolute;
+    bottom: 10px;
+  }
+  .copyIcon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,61 +1,62 @@
-.topComponentWrapper {
-  position: relative;
+.topComponentHighLevel {
   display: flex;
-  flex-direction: row;
-  // top: 10vh;
+  justify-content: center;
+  .topComponentWrapper {
+    display: flex;
+    justify-content: center;
 
-  .topImage {
-    position: relative;
-
-    .imageContainer {
+    .topImage {
       position: relative;
-      top: 100px;
-      left: 100px;
-      overflow: hidden;
-      height: 700px;
-      width: 700px;
-      img {
-        height: 100%;
-        width: auto;
-      }
-    }
+      left: 50px;
 
-    .textSection {
-      position: absolute;
-      color: white;
-
-      top: 50px;
-      left: 20px;
-
-      .title {
-        color: #263f44;
-        font-size: 3em;
-        font-family: 'Abril Fatface', cursive;
+      .imageContainer {
+        position: relative;
+        top: 100px;
+        left: 100px;
+        overflow: hidden;
+        height: 700px;
+        width: 700px;
+        img {
+          height: 100%;
+          width: auto;
+        }
       }
 
-      .description {
-        padding: 20px 0;
-        p {
-          font-size: 1em;
+      .textSection {
+        position: absolute;
+        color: white;
+        top: 20px;
+        left: 20px;
+        .title {
+          color: #263f44;
+          font-size: 4em;
+          font-family: 'Abril Fatface', cursive;
+        }
+        .description {
+          padding: 2px 0;
+          h3 {
+            font-size: 1.5em;
+          }
         }
       }
     }
-  }
 
-  .topPicSection {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    top: 150px;
-    right: 200px;
-    .topPicBackground {
-      position: absolute;
-      width: 500px;
-      height: 400px;
-      // background-color: #ffd369;
-      background: rgba(255, 211, 105, 0.5);
-      // opacity: 0.5;
-      padding: 20px;
+    .topPicSection {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      top: 180px;
+      right: 150px;
+      .topPicBackground {
+        width: 500px;
+        height: 400px;
+        background: rgba(255, 211, 105, 0.5);
+        padding: 20px;
+
+        .picSecWrapper {
+          margin: 15px 0;
+        }
+      }
     }
   }
 }

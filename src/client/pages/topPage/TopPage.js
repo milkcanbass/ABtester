@@ -5,8 +5,9 @@ import PictureSection from '../../components/picturesSection/picturesSection';
 
 const TopPage = () => (
   <>
-    <TopComponent />
-    {/* <PictureSection /> */}
+    <div className="topPageWrapper">
+      <TopComponent />
+    </div>
   </>
 );
 export default TopPage;

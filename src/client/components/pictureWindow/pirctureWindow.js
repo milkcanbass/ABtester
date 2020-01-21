@@ -31,10 +31,15 @@ class PictureWindow extends Component {
 
   handleChange = (e) => {
     let image;
+    const fileSize = e.target.files[0].size / 1024 / 1024;
     if (e.target.files[0] === image) {
       image = null;
     }
-    if (e.target.files[0]) {
+
+    if (fileSize > 1) {
+      console.log(fileSize);
+      alert('Image size exceeds 1 MB');
+    } else if (e.target.files[0]) {
       const { window, setImage } = this.props;
       image = e.target.files[0];
       const imageUrl = URL.createObjectURL(e.target.files[0]);
@@ -107,19 +112,23 @@ class PictureWindow extends Component {
     let imageScreen;
     if (window === 'window1') {
       imageScreen = (
-        <img
-          src={surveyPage ? imageUrl1 : window1ImgUrl || 'http://via.placeholder.com/400x300'}
-          alt="Uploaded images"
-          className={surveyPage ? 'imageScreen' : 'uploadImageScreen'}
-        />
+        <div className={surveyPage ? 'imgWrap' : 'topImgWrap'}>
+          <img
+            src={surveyPage ? imageUrl1 : window1ImgUrl || 'http://via.placeholder.com/400x300'}
+            alt="Uploaded images"
+            className="imageScreen"
+          />
+        </div>
       );
     } else {
       imageScreen = (
-        <img
-          src={surveyPage ? imageUrl2 : window2ImgUrl || 'http://via.placeholder.com/400x300'}
-          alt="Uploaded images"
-          className={surveyPage ? 'imageScreen' : 'uploadImageScreen'}
-        />
+        <div className={surveyPage ? 'imgWrap' : 'topImgWrap'}>
+          <img
+            src={surveyPage ? imageUrl2 : window2ImgUrl || 'http://via.placeholder.com/400x300'}
+            alt="Uploaded images"
+            className="imageScreen"
+          />
+        </div>
       );
     }
 
@@ -145,10 +154,11 @@ class PictureWindow extends Component {
           <input
             className="fileInput"
             type="file"
+            accept="image/*"
             onClick={(e) => this.inputOnClick(e)}
             onChange={this.handleChange}
           />
-          <p>Upload</p>
+          <p>UPLOAD</p>
         </label>
       );
     }
