@@ -57,6 +57,10 @@ class Survey extends Component {
     });
   }
 
+  roundToTwo(num) {
+    return +`${Math.round(`${num}e+2`)}e-2`;
+  }
+
   render() {
     const {
       imageUrl1,
@@ -71,11 +75,12 @@ class Survey extends Component {
 
     // background color
     const talLike = imageUrl1Like + imageUrl2Like;
-    const like2Percentage = (imageUrl2Like / talLike) * 100;
+    const like1Percentage = this.roundToTwo((imageUrl1Like / talLike) * 100) || 0;
+    const like2Percentage = this.roundToTwo((imageUrl2Like / talLike) * 100) || 0;
 
     return (
       <div className="surveyWrapper">
-        <h1 className="title">{title}</h1>
+        <p className="title">{title}</p>
         <div className="picWidRapper">
           <div className="wrapWrap">
             <div className="win1Wrapper">
@@ -84,6 +89,7 @@ class Survey extends Component {
                 window="window1"
                 surveyPage
                 imageUrl1Like={imageUrl1Like}
+                like1Percentage={like1Percentage}
                 imageUrl1={imageUrl1}
                 pageRef={pageRef}
               />
@@ -94,6 +100,7 @@ class Survey extends Component {
                 window="window2"
                 surveyPage
                 imageUrl2Like={imageUrl2Like}
+                like2Percentage={like2Percentage}
                 imageUrl2={imageUrl2}
                 pageRef={pageRef}
               />

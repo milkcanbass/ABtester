@@ -1,0 +1,17 @@
+.heartWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heartNum {
+    color: whitesmoke;
+    position: absolute;
+    font-size: 1.3em;
+  }
+
+  .heartIcon {
+    position: relative;
+    width: 50px;
+  }
+}

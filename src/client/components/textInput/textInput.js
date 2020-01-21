@@ -5,7 +5,7 @@ import './textInput.style.scss';
 
 const TextInput = (props) => {
   const {
-    label, onChange, value, placeholder
+    label, onChange, value, placeholder, maxlength
   } = props;
 
   return (
@@ -16,6 +16,7 @@ const TextInput = (props) => {
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      maxLength={maxlength}
     />
   );
 };

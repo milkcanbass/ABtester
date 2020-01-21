@@ -142,6 +142,7 @@ const PicturesSection = ({
             name="title"
             value={disableBtn.title}
             onChange={(e) => onChange(e)}
+            maxlength="50"
           />
           <MyButton onClick={(e) => handleUpload()} disabled={disableBtn.disable}>
             {btnMes}

@@ -16,17 +16,17 @@ import { setImage } from '../../redux/pictureWindow/pictureWindow.action';
 // component
 import MyButton from '../myButton/myButton';
 import TextInput from '../textInput/textInput';
+import LikeIcon from '../likeIcon/likeIcon';
 
 // fireStore
 import firebase, { db } from '../../../firebase/firebaseConfig';
-
-// image
-import svgImg from '../../assets/heart.svg';
 
 class PictureWindow extends Component {
   state = {
     liked: false,
     comment: '',
+    like1: 0,
+    like2: 0,
   };
 
   handleChange = (e) => {
@@ -106,8 +106,20 @@ class PictureWindow extends Component {
 
   render() {
     const {
-      window, window1ImgUrl, window2ImgUrl, surveyPage, imageUrl1, imageUrl2
+      window,
+      window1ImgUrl,
+      window2ImgUrl,
+      surveyPage,
+      imageUrl1,
+      imageUrl2,
+      imageUrl1Like,
+      imageUrl2Like,
+      like1Percentage,
+      like2Percentage,
     } = this.props;
+
+    console.log(like1Percentage, like2Percentage);
+
     const { liked } = this.state;
     let imageScreen;
     if (window === 'window1') {
@@ -132,20 +144,30 @@ class PictureWindow extends Component {
       );
     }
 
+    // let totalLike =
+
     let infoSection;
     if (surveyPage) {
       infoSection = (
         <div className="textWrapper">
+          <div className="likeSection">
+            <div className="percentage">
+              {window === 'window1' ? `${like1Percentage}%` : `${like2Percentage}%`}
+            </div>
+            <LikeIcon
+              like
+              onClick={liked ? null : () => this.sendLike(window)}
+              window={window}
+              imageUrl1Like={imageUrl1Like}
+              imageUrl2Like={imageUrl2Like}
+            />
+          </div>
           <TextInput
-            placeholder="Add a comment"
+            placeholder="COMMENT"
             value={this.state.comment}
             onChange={(e) => this.onChange(e)}
           />
           <MyButton onClick={(e) => this.submitComment(e)}>Submit</MyButton>
-          <MyButton like onClick={liked ? null : () => this.sendLike(window)}>
-            {liked ? 'Thank you for your like!' : 'like'}
-          </MyButton>
-          <img src={svgImg} className="heartIcon" alt="heart icon" />
         </div>
       );
     } else {

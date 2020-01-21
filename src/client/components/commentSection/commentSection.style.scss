@@ -5,13 +5,21 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+  color: #eaeaea;
+
+  p {
+    text-overflow: ellipsis; /* will make [...] at the end */
+    // width: 370px; /* change to your preferences */
+    overflow-wrap: break-word; /* older browsers */
+    max-width: 75ch;
+  }
 
   .speechBubble1 {
     position: relative;
-    background: #34aebb;
+    background: #40bfc1;
     border-radius: 0.4em;
     padding: 10px;
-    margin: 20px;
+    margin: 5px 10px;
   }
 
   .speechBubble1:after {
@@ -31,10 +39,10 @@
 
   .speechBubble2 {
     position: relative;
-    background: #ca0000;
+    background: #ff6f5e;
     border-radius: 0.4em;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 10px;
   }
 
   .speechBubble2:after {

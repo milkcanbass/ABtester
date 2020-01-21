@@ -13,9 +13,9 @@ const CommentSection = (props) => {
   return (
     <div className="commentWrapper">
       {comArr.map((comment) => (
-        <div className={window === 'window1' ? 'speechBubble1' : 'speechBubble2'}>
+        <p className={window === 'window1' ? 'speechBubble1' : 'speechBubble2'}>
           {comment.comment}
-        </div>
+        </p>
       ))}
     </div>
   );

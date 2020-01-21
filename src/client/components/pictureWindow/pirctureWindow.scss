@@ -55,14 +55,18 @@
     color: white;
   }
   .textWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    .likeSection {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-bottom: 15px;
 
-    .heartIcon {
-      width: 60px;
-      height: 60px;
+      .percentage {
+        position: relative;
+        width: 50px;
+        color: #263f44;
+        font-size: 2em;
+      }
     }
   }
 }

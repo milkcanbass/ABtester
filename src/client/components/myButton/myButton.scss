@@ -10,6 +10,8 @@
   cursor: pointer;
   transition: all 0.3;
 
+  outline: none;
+
   &:hover {
     background-color: #015668;
     transition: all 0.5s ease-out;
