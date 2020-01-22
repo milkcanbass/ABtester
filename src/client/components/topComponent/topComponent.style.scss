@@ -6,7 +6,7 @@
 
   .topImage {
     position: relative;
-    left: 50px;
+    left: 150px;
 
     .imageContainer {
       position: relative;
@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     top: 200px;
-    right: 50px;
+    right: 150px;
     .topPicBackground {
       width: 500px;
       height: 400px;
@@ -54,6 +54,84 @@
 
       .picSecWrapper {
         margin: 15px 0;
+      }
+    }
+  }
+}
+
+@include responseTo(large) {
+  .topComponentWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .topImage {
+      position: relative;
+      left: 0px;
+
+      .imageContainer {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        overflow: hidden;
+        height: 50vh;
+        width: 100vw;
+        background-image: url(../../assets/eggPlant.jpg);
+        background-size: cover; // background-image: url(../../assets/eggPlant.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      .textSection {
+        position: absolute;
+        // color: white;
+        top: 180px;
+        left: 0px;
+        // border: solid 1px #fafafa;
+        text-align: center;
+        margin: 15px;
+
+        .title {
+          position: relative;
+          background-color: white;
+          color: black;
+          mix-blend-mode: screen;
+          font-size: 4em;
+          font-family: 'Abril Fatface', cursive;
+        }
+        .description {
+          padding: 2px 0;
+
+          h3 {
+            font-size: 1.5em;
+          }
+        }
+      }
+    }
+
+    .topPicSection {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      // align-items: none;
+      // justify-content: none;
+      // align-items: flex-start;
+      text-align: center;
+      height: 50vh;
+      width: 100vw;
+      top: 0px;
+      right: 0px;
+      .topPicBackground {
+        width: 100vw;
+        height: 50vh;
+        background: rgba(255, 211, 105, 0.5);
+        margin: 0;
+        padding: 0;
+
+        .picSecWrapper {
+          margin: 0;
+        }
       }
     }
   }
@@ -122,6 +200,7 @@
       top: 0px;
       right: 0px;
       .topPicBackground {
+        position: relative;
         width: 100vw;
         height: auto;
         background: rgba(255, 211, 105, 0.5);
