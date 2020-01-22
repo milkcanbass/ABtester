@@ -1,0 +1,39 @@
+$textMainColor: black;
+$textSubColor: grey;
+$donationPrimaryColor: #e74c3c;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Archivo Narrow', sans-serif;
+  background-color: #eaeaea;
+  color: #263f44;
+  box-sizing: border-box;
+}
+
+.mainWrapper {
+  display: flex;
+  justify-content: center;
+
+  .contentsWrapper {
+    min-height: 100vh;
+    background-color: #eaeaea;
+  }
+}
+
+$break-s: 380px;
+$break-m: 480px;
+@mixin responseTo($media) {
+  @if $media == small {
+    @media only screen and (max-width: $break-s) {
+      @content;
+    }
+  } @else if $media == medium {
+    @media only screen and (max-width: $break-m) {
+      @content;
+    }
+  }
+}

@@ -1,41 +1,110 @@
-.topComponentHighLevel {
+@import '../../app';
+
+.topComponentWrapper {
   display: flex;
   justify-content: center;
-  .topComponentWrapper {
+
+  .topImage {
+    position: relative;
+    left: 50px;
+
+    .imageContainer {
+      position: relative;
+      top: 100px;
+      left: 100px;
+      overflow: hidden;
+      height: 700px;
+      width: 700px;
+      background-image: url(../../assets/topImage.jpg);
+      background-size: cover; // background-image: url(../../assets/eggPlant.jpg);
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .textSection {
+      position: absolute;
+      color: white;
+      top: 20px;
+      left: 20px;
+      .title {
+        color: #263f44;
+        font-size: 4em;
+        font-family: 'Abril Fatface', cursive;
+      }
+      .description {
+        padding: 2px 0;
+        h3 {
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+
+  .topPicSection {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    top: 200px;
+    right: 50px;
+    .topPicBackground {
+      width: 500px;
+      height: 400px;
+      background: rgba(255, 211, 105, 0.5);
+      padding: 20px;
+
+      .picSecWrapper {
+        margin: 15px 0;
+      }
+    }
+  }
+}
+
+@include responseTo(medium) {
+  .topComponentWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 
     .topImage {
       position: relative;
-      left: 50px;
+      left: 0px;
 
       .imageContainer {
         position: relative;
-        top: 100px;
-        left: 100px;
+        top: 0px;
+        left: 0px;
         overflow: hidden;
-        height: 700px;
-        width: 700px;
-        img {
-          height: 100%;
-          width: auto;
-        }
+        height: 50vh;
+        width: 100vw;
+        background-image: url(../../assets/eggPlant.jpg);
+        background-size: cover; // background-image: url(../../assets/eggPlant.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
       }
 
       .textSection {
         position: absolute;
-        color: white;
-        top: 20px;
-        left: 20px;
+        // color: white;
+        top: 80px;
+        left: 0px;
+        // border: solid 1px #fafafa;
+        text-align: center;
+        margin: 15px;
+
         .title {
-          color: #263f44;
-          font-size: 4em;
+          position: relative;
+          background-color: white;
+          color: black;
+          mix-blend-mode: screen;
+          font-size: 2em;
           font-family: 'Abril Fatface', cursive;
         }
         .description {
           padding: 2px 0;
+
           h3 {
-            font-size: 1.5em;
+            font-size: 1em;
           }
         }
       }
@@ -45,16 +114,22 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      top: 180px;
-      right: 150px;
+      // align-items: none;
+      // justify-content: none;
+      // align-items: flex-start;
+      height: 50vh;
+      width: 100vw;
+      top: 0px;
+      right: 0px;
       .topPicBackground {
-        width: 500px;
-        height: 400px;
+        width: 100vw;
+        height: auto;
         background: rgba(255, 211, 105, 0.5);
-        padding: 20px;
+        margin: 0;
+        padding: 0;
 
         .picSecWrapper {
-          margin: 15px 0;
+          margin: 0;
         }
       }
     }

@@ -1,7 +1,8 @@
 .commentWrapper {
   width: 400px;
-  height: 400px;
-  overflow: scroll;
+  height: 420px;
+  overflow: auto;
+  -webkit-overflow-scrolling: auto; /* Lets it scroll lazy */
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -9,7 +10,6 @@
 
   p {
     text-overflow: ellipsis; /* will make [...] at the end */
-    // width: 370px; /* change to your preferences */
     overflow-wrap: break-word; /* older browsers */
     max-width: 75ch;
   }

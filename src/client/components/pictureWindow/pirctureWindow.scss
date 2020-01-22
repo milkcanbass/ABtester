@@ -1,3 +1,5 @@
+@import '../../app';
+
 .picWidWrapper {
   display: flex;
   flex-direction: column;
@@ -62,10 +64,75 @@
       margin-bottom: 15px;
 
       .percentage {
+        font-family: 'Abril Fatface', cursive;
         position: relative;
         width: 50px;
         color: #263f44;
         font-size: 2em;
+      }
+    }
+  }
+}
+
+@include responseTo(medium) {
+  .picWidWrapper {
+    margin: 0 10px;
+
+    .imgWrap {
+      display: flex;
+      justify-content: center;
+      height: 300px;
+      width: 400px;
+    }
+    .topImgWrap {
+      display: flex;
+      justify-content: center;
+      height: 105px;
+      width: 140px;
+    }
+
+    input[type='file'] {
+      display: none;
+    }
+    .custom-file-upload {
+      position: relative;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      border: 1px solid #ccc;
+      background-color: white;
+      opacity: 0.5;
+      border-radius: 10%;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.3;
+
+      &:hover {
+        opacity: 0.8;
+        transition: opacity 0.5s ease-out;
+      }
+    }
+
+    .fileInput {
+      color: white;
+    }
+    .textWrapper {
+      .likeSection {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 15px;
+
+        .percentage {
+          font-family: 'Abril Fatface', cursive;
+          position: relative;
+          width: 50px;
+          color: #263f44;
+          font-size: 2em;
+        }
       }
     }
   }

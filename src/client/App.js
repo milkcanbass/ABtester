@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './app.scss';
+import './_app.scss';
 
 // Components
 import NotFound from './pages/notFound/notFound';
