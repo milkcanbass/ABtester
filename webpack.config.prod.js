@@ -1,24 +1,24 @@
-const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const path = require('path');
 
-console.log('prod');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
 module.exports = {
-  entry: ['babel-polyfill', './src/client/index.js'],
+  entry: { main: './src/client/index.js' },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'main.bundle.js',
-    chunkFilename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].[chunkhash].bundle.js',
     publicPath: '/',
   },
+  target: 'web',
   devtool: 'source-map',
   module: {
     rules: [
@@ -61,7 +61,6 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new RobotstxtPlugin('public/robots.txt'),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
@@ -75,9 +74,9 @@ module.exports = {
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new WebpackPwaManifest({
-      name: 'Which do you like?',
+      name: 'ShinCat and HanDog',
       short_name: 'S and H',
-      description: 'Instant AB test',
+      description: 'ShinCat and HanDog web store',
       background_color: '#ffffff',
       theme_color: '#2196F3',
       inject: true,
@@ -86,25 +85,25 @@ module.exports = {
       destination: path.join('/manifest'),
       icons: [
         {
-          src: path.resolve('public/pngIcon.png'),
+          src: path.resolve('public/pngicon.png'),
           sizes: [120, 152, 167, 180, 1024],
           destination: path.join('/manifest/icons/ios'),
           ios: true,
         },
         {
-          src: path.resolve('public/pngIcon.png'),
+          src: path.resolve('public/pngicon.png'),
           size: 1024,
           destination: path.join('/manifest/icons/ios'),
           ios: 'startup',
         },
         {
-          src: path.resolve('public/pngIcon.png'),
+          src: path.resolve('public/pngicon.png'),
           sizes: [36, 48, 72, 96, 144, 192, 512],
           destination: path.join('/manifest/icons/android'),
         },
       ],
     }),
-    new WorkboxPlugin.GenerateSW({
+    new GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
@@ -149,6 +148,10 @@ module.exports = {
           priority: -20,
           reuseExistingChunk: true,
           filename: '[name].bundle.js',
+        },
+        firebase: {
+          test: /[\\/]node_modules[\\/]((@firebase).*)[\\/]/,
+          name: 'firebase',
         },
       },
     },
