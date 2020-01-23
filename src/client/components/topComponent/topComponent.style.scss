@@ -46,16 +46,6 @@
     flex-direction: column;
     top: 200px;
     right: 150px;
-    .topPicBackground {
-      width: 500px;
-      height: 400px;
-      background: rgba(255, 211, 105, 0.5);
-      padding: 20px;
-
-      .picSecWrapper {
-        margin: 15px 0;
-      }
-    }
   }
 }
 
@@ -122,17 +112,6 @@
       width: 100vw;
       top: 0px;
       right: 0px;
-      .topPicBackground {
-        width: 100vw;
-        height: 50vh;
-        background: rgba(255, 211, 105, 0.5);
-        margin: 0;
-        padding: 0;
-
-        .picSecWrapper {
-          margin: 0;
-        }
-      }
     }
   }
 }
@@ -199,18 +178,6 @@
       width: 100vw;
       top: 0px;
       right: 0px;
-      .topPicBackground {
-        position: relative;
-        width: 100vw;
-        height: auto;
-        background: rgba(255, 211, 105, 0.5);
-        margin: 0;
-        padding: 0;
-
-        .picSecWrapper {
-          margin: 0;
-        }
-      }
     }
   }
 }

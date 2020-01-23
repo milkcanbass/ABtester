@@ -75,9 +75,9 @@ module.exports = {
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new WebpackPwaManifest({
-      name: 'ShinCat and HanDog',
+      name: 'Which do you like?',
       short_name: 'S and H',
-      description: 'ShinCat and HanDog web store',
+      description: 'Instant AB test',
       background_color: '#ffffff',
       theme_color: '#2196F3',
       inject: true,

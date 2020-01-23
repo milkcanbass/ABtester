@@ -20,7 +20,6 @@ const TopComponent = () => (
     </div>
     <div className="topPicSection">
       <div className="topPicBackground">
-        <h3>Upload images.(max size 1MB)</h3>
         <div className="picSecWrapper">
           <PicturesSection />
         </div>

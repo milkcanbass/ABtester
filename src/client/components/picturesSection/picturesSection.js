@@ -131,11 +131,12 @@ const PicturesSection = ({
     <>
       <MyModal pageUrl={pageUrl} />
       <div className="pageWrapper">
+        <div className="pageWrapperBg" />
+        <h3>Upload images.(max size 1MB)</h3>
         <div className="cardWrapper">
           <PictureWindow window="window1" />
           <PictureWindow window="window2" />
         </div>
-        <div className="uploadProgress">{/* <progress value={progress} max="100" /> */}</div>
         <div className="inputSectionWrapper">
           <TextInput
             placeholder="What's your question?"

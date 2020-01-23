@@ -80,8 +80,8 @@ class Survey extends Component {
 
     return (
       <div className="surveyWrapper">
-        <p className="title">{title}</p>
         <div className="picWidRapper">
+          <p className="title">{title}</p>
           <div className="wrapWrap">
             <div className="win1Wrapper">
               <div className="centerLine" />
