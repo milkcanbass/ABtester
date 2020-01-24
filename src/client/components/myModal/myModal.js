@@ -14,7 +14,7 @@ import copyIcon from '../../assets/copyicon.svg';
 
 class MyModal extends React.Component {
   state = {
-    address: 'http://localhost:3000/survey/',
+    address: 'https://abtester-5b109.web.app/survey/',
   };
 
   copyToClipBoard = () => {

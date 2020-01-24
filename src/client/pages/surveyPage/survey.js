@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './survey.style.scss';
 
 // firebase
+import { Redirect } from 'react-router-dom';
 import { db } from '../../../firebase/firebaseConfig';
 
 // Component
@@ -19,6 +20,7 @@ class Survey extends Component {
     title: '',
     address: '',
     pageRef: null,
+    redirect: false,
   };
 
   componentDidMount() {
@@ -32,6 +34,13 @@ class Survey extends Component {
     });
 
     pageRef.onSnapshot((doc) => {
+      if (!doc.exists) {
+        this.setState({
+          ...this.state,
+          redirect: true,
+        });
+      }
+
       const {
         imageUrl1,
         imageUrl1Like,
@@ -41,19 +50,17 @@ class Survey extends Component {
         imageUrl2Comments,
         title,
       } = doc.data();
-      if (!doc.exists) {
-        console.log('no pages exists');
-      } else {
-        this.setState({
-          imageUrl1,
-          imageUrl1Like,
-          imageUrl1Comments,
-          imageUrl2,
-          imageUrl2Like,
-          imageUrl2Comments,
-          title,
-        });
-      }
+      console.log(this.state);
+
+      this.setState({
+        imageUrl1,
+        imageUrl1Like,
+        imageUrl1Comments,
+        imageUrl2,
+        imageUrl2Like,
+        imageUrl2Comments,
+        title,
+      });
     });
   }
 
@@ -71,6 +78,7 @@ class Survey extends Component {
       imageUrl2Comments,
       title,
       pageRef,
+      redirect,
     } = this.state;
 
     // background color
@@ -78,6 +86,9 @@ class Survey extends Component {
     const like1Percentage = this.roundToTwo((imageUrl1Like / talLike) * 100) || 0;
     const like2Percentage = this.roundToTwo((imageUrl2Like / talLike) * 100) || 0;
 
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="surveyWrapper">
         <div className="picWidRapper">

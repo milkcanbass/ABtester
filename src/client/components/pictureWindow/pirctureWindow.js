@@ -118,8 +118,6 @@ class PictureWindow extends Component {
       like2Percentage,
     } = this.props;
 
-    console.log(like1Percentage, like2Percentage);
-
     const { liked } = this.state;
     let imageScreen;
     if (window === 'window1') {
