@@ -22,7 +22,8 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 60ch;
+    max-width: 20ch;
+    overflow-wrap: break-word; /* older browsers */
   }
 
   .centerLine {
@@ -62,7 +63,7 @@
     .title {
       position: relative;
       width: 80%;
-      font-size: 4em;
+      font-size: 2em;
       text-align: center;
       color: #263f44;
       font-family: 'Abril Fatface', cursive;
@@ -128,7 +129,7 @@
     .title {
       position: relative;
       width: 90%;
-      font-size: 2em;
+      font-size: 1em;
       text-align: center;
       color: #263f44;
       font-family: 'Abril Fatface', cursive;
