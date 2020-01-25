@@ -90,33 +90,31 @@ class Survey extends Component {
       return <Redirect to="/" />;
     }
     return (
-      <div className="surveyWrapper">
-        <div className="picWidRapper">
-          <p className="title">{title}</p>
-          <div className="wrapWrap">
-            <div className="win1Wrapper">
-              <div className="centerLine" />
-              <PictureWindow
-                window="window1"
-                surveyPage
-                imageUrl1Like={imageUrl1Like}
-                like1Percentage={like1Percentage}
-                imageUrl1={imageUrl1}
-                pageRef={pageRef}
-              />
-              <CommentSection window="window1" comments={imageUrl1Comments} />
-            </div>
-            <div className="win2Wrapper">
-              <PictureWindow
-                window="window2"
-                surveyPage
-                imageUrl2Like={imageUrl2Like}
-                like2Percentage={like2Percentage}
-                imageUrl2={imageUrl2}
-                pageRef={pageRef}
-              />
-              <CommentSection window="window2" comments={imageUrl2Comments} />
-            </div>
+      <div className="picWidRapper">
+        <p className="title">{title}</p>
+        <div className="wrapWrap">
+          <div className="win1Wrapper">
+            <div className="centerLine" />
+            <PictureWindow
+              window="window1"
+              surveyPage
+              imageUrl1Like={imageUrl1Like}
+              like1Percentage={like1Percentage}
+              imageUrl1={imageUrl1}
+              pageRef={pageRef}
+            />
+            <CommentSection window="window1" comments={imageUrl1Comments} />
+          </div>
+          <div className="win2Wrapper">
+            <PictureWindow
+              window="window2"
+              surveyPage
+              imageUrl2Like={imageUrl2Like}
+              like2Percentage={like2Percentage}
+              imageUrl2={imageUrl2}
+              pageRef={pageRef}
+            />
+            <CommentSection window="window2" comments={imageUrl2Comments} />
           </div>
         </div>
       </div>

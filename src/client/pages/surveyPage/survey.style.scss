@@ -1,16 +1,12 @@
 @import '../../app';
 .picWidRapper {
   position: relative;
-  background-color: whitesmoke;
   width: 100vw;
   min-height: 100vh;
   padding-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  -webkit-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-  -moz-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-  box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
 
   .title {
     position: relative;
@@ -19,11 +15,10 @@
     text-align: center;
     color: #263f44;
     font-family: 'Abril Fatface', cursive;
-    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 20ch;
-    overflow-wrap: break-word; /* older browsers */
+    overflow-wrap: break-word;
   }
 
   .centerLine {
@@ -44,14 +39,14 @@
     .win1Wrapper {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       margin: 0 30px;
     }
     .win2Wrapper {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       margin: 0 30px;
     }
@@ -67,49 +62,15 @@
       text-align: center;
       color: #263f44;
       font-family: 'Abril Fatface', cursive;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: 60ch;
     }
 
     position: relative;
-    background-color: whitesmoke;
-    -webkit-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-    -moz-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-    box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-
-    .centerLine {
-      position: absolute;
-      left: 50%;
-      top: 10%;
-      width: 3px;
-      height: 300px;
-      background-image: linear-gradient(
-        135deg,
-        rgba(176, 169, 176, 0.75),
-        rgba(176, 169, 176, 0.05)
-      );
-    }
 
     .wrapWrap {
-      position: relative;
-      display: flex;
-      height: auto;
-      width: auto;
-
       .win1Wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         margin: 0 5px;
       }
       .win2Wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         margin: 0 5px;
       }
     }
@@ -118,59 +79,29 @@
 
 @include responseTo(medium) {
   .picWidRapper {
-    position: relative;
-    background-color: whitesmoke;
-    width: 100%;
-    height: auto;
-    -webkit-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-    -moz-box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-    box-shadow: -10px 10px 5px 0px rgba(176, 169, 176, 0.25);
-
     .title {
       position: relative;
-      width: 90%;
-      font-size: 1em;
+      width: 95%;
+      font-size: 1.5em;
       text-align: center;
       color: #263f44;
       font-family: 'Abril Fatface', cursive;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: 60ch;
+      max-width: 15ch;
     }
 
     .centerLine {
-      position: absolute;
-      left: 50%;
-      top: 10%;
-      width: 0;
-      height: 0;
-      background-image: linear-gradient(
-        135deg,
-        rgba(176, 169, 176, 0.75),
-        rgba(176, 169, 176, 0.05)
-      );
+      display: none;
     }
 
     .wrapWrap {
       position: relative;
-      display: flex;
       flex-direction: column;
-      height: auto;
-      width: auto;
+      width: 100vw;
 
       .win1Wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         margin: 10 0px;
       }
       .win2Wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         margin: 10 0px;
       }
     }

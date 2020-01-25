@@ -1,7 +1,7 @@
 @import '../../app';
 .commentWrapper {
   width: 400px;
-  height: 420px;
+  max-height: 420px;
   overflow: auto;
   -webkit-overflow-scrolling: auto; /* Lets it scroll lazy */
   display: flex;
@@ -65,131 +65,25 @@
 @include responseTo(large) {
   .commentWrapper {
     width: 320px;
-    height: 350px;
+    max-height: 350px;
     overflow: auto;
     -webkit-overflow-scrolling: auto; /* Lets it scroll lazy */
     display: flex;
     flex-direction: column;
     align-content: center;
     color: #eaeaea;
-
-    p {
-      text-overflow: ellipsis; /* will make [...] at the end */
-      overflow-wrap: break-word; /* older browsers */
-      max-width: 75ch;
-    }
-
-    .speechBubble1 {
-      position: relative;
-      background: #40bfc1;
-      border-radius: 0.4em;
-      padding: 10px;
-      margin: 5px 10px;
-    }
-
-    .speechBubble1:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 9px solid transparent;
-      border-right-color: #34aebb;
-      border-left: 0;
-      border-bottom: 0;
-      margin-top: -4.5px;
-      margin-left: -9px;
-    }
-
-    .speechBubble2 {
-      position: relative;
-      background: #ff6f5e;
-      border-radius: 0.4em;
-      padding: 10px;
-      margin: 5px 10px;
-    }
-
-    .speechBubble2:after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 9px solid transparent;
-      border-left-color: #ca0000;
-      border-right: 0;
-      border-bottom: 0;
-      margin-top: -4.5px;
-      margin-right: -9px;
-    }
   }
 }
 
 @include responseTo(medium) {
   .commentWrapper {
     position: relative;
-    top: 10px;
+    margin: 10px 0;
     width: 80%;
-    height: 150px;
-    overflow: auto;
-    -webkit-overflow-scrolling: auto; /* Lets it scroll lazy */
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    color: #eaeaea;
+    max-height: 150px;
 
     p {
-      text-overflow: ellipsis; /* will make [...] at the end */
-      overflow-wrap: break-word; /* older browsers */
-      max-width: 75ch;
-    }
-
-    .speechBubble1 {
-      position: relative;
-      background: #40bfc1;
-      border-radius: 0.4em;
-      padding: 10px;
-      margin: 5px 10px;
-    }
-
-    .speechBubble1:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 9px solid transparent;
-      border-right-color: #34aebb;
-      border-left: 0;
-      border-bottom: 0;
-      margin-top: -4.5px;
-      margin-left: -9px;
-    }
-
-    .speechBubble2 {
-      position: relative;
-      background: #ff6f5e;
-      border-radius: 0.4em;
-      padding: 10px;
-      margin: 5px 10px;
-    }
-
-    .speechBubble2:after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 9px solid transparent;
-      border-left-color: #ca0000;
-      border-right: 0;
-      border-bottom: 0;
-      margin-top: -4.5px;
-      margin-right: -9px;
+      max-width: 40ch;
     }
   }
 }

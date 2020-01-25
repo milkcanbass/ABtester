@@ -51,7 +51,6 @@
 
 @include responseTo(large) {
   .topComponentWrapper {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,10 +74,8 @@
 
       .textSection {
         position: absolute;
-        // color: white;
         top: 180px;
         left: 0px;
-        // border: solid 1px #fafafa;
         text-align: center;
         margin: 15px;
 
@@ -92,7 +89,6 @@
         }
         .description {
           padding: 2px 0;
-
           h3 {
             font-size: 1.5em;
           }
@@ -139,10 +135,8 @@
 
       .textSection {
         position: absolute;
-        // color: white;
         top: 80px;
         left: 0px;
-        // border: solid 1px #fafafa;
         text-align: center;
         margin: 15px;
 
@@ -168,9 +162,6 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      // align-items: none;
-      // justify-content: none;
-      // align-items: flex-start;
       height: 50vh;
       width: 100vw;
       top: 0px;

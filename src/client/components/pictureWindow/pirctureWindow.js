@@ -36,8 +36,7 @@ class PictureWindow extends Component {
       image = null;
     }
 
-    if (fileSize > 1) {
-      console.log(fileSize);
+    if (fileSize > 4) {
       alert('Image size exceeds 1 MB');
     } else if (e.target.files[0]) {
       const { window, setImage } = this.props;

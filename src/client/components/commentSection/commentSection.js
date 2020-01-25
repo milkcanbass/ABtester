@@ -5,19 +5,19 @@ const CommentSection = (props) => {
   const { comments, window } = props;
 
   const comArr = [];
+  let commentArea;
 
-  for (let i = comments.length - 1; i >= 0; i--) {
-    comArr.push(comments[i]);
+  if (comments.length < 1) {
+    commentArea = null;
+  } else {
+    for (let i = comments.length - 1; i >= 0; i--) {
+      comArr.push(comments[i]);
+    }
+    commentArea = comArr.map((comment) => (
+      <p className={window === 'window1' ? 'speechBubble1' : 'speechBubble2'}>{comment.comment}</p>
+    ));
   }
 
-  return (
-    <div className="commentWrapper">
-      {comArr.map((comment) => (
-        <p className={window === 'window1' ? 'speechBubble1' : 'speechBubble2'}>
-          {comment.comment}
-        </p>
-      ))}
-    </div>
-  );
+  return <div className="commentWrapper">{commentArea}</div>;
 };
 export default CommentSection;

@@ -1,6 +1,7 @@
 import React from 'react';
 import './notFound.style.scss';
+import { Redirect } from 'react-router-dom';
 
-const NotFound = (props) => <h1>notFound</h1>;
+const NotFound = () => <Redirect to="/" />;
 
 export default NotFound;
