@@ -9,9 +9,13 @@ import {
   selectWindow2ImgUrl,
   selectWindow1Image,
   selectWindow2Image,
+  selectLikedState,
 } from '../../redux/pictureWindow/pictureWindow.selectors';
 
 import { setImage } from '../../redux/pictureWindow/pictureWindow.action';
+
+// import functions
+import { displayImage } from '../../utils/utils';
 
 // component
 import MyButton from '../myButton/myButton';
@@ -23,31 +27,16 @@ import firebase, { db } from '../../../firebase/firebaseConfig';
 
 class PictureWindow extends Component {
   state = {
-    liked: false,
     comment: '',
     like1: 0,
     like2: 0,
   };
 
   handleChange = (e) => {
-    let image;
-    const fileSize = e.target.files[0].size / 1024 / 1024;
-    if (e.target.files[0] === image) {
-      image = null;
-    }
-
-    if (fileSize > 4) {
-      alert('Image size exceeds 1 MB');
-    } else if (e.target.files[0]) {
-      const { window, setImage } = this.props;
-      image = e.target.files[0];
-      const imageUrl = URL.createObjectURL(e.target.files[0]);
-      setImage({
-        window,
-        image,
-        imageUrl,
-      });
-    }
+    e.preventDefault();
+    const file = e.target.files[0];
+    const { window } = this.props;
+    displayImage(file, window);
   };
 
   inputOnClick = (e) => {
@@ -55,20 +44,17 @@ class PictureWindow extends Component {
   };
 
   sendLike = () => {
-    const { window } = this.props;
+    const { window, likedState } = this.props;
     const increment = firebase.firestore.FieldValue.increment(1);
     const docRef = this.props.pageRef;
 
     // Update read count. one time like per access
-    if (!this.state.liked) {
+    if (!likedState) {
       if (window === 'window1') {
         docRef.update({ imageUrl1Like: increment });
       } else {
         docRef.update({ imageUrl2Like: increment });
       }
-      this.setState({
-        liked: true,
-      });
     } else {
       return null;
     }
@@ -115,9 +101,9 @@ class PictureWindow extends Component {
       imageUrl2Like,
       like1Percentage,
       like2Percentage,
+      likedState,
     } = this.props;
 
-    const { liked } = this.state;
     let imageScreen;
     if (window === 'window1') {
       imageScreen = (
@@ -153,7 +139,7 @@ class PictureWindow extends Component {
             </div>
             <LikeIcon
               like
-              onClick={liked ? null : () => this.sendLike(window)}
+              onClick={likedState ? null : () => this.sendLike(window)}
               window={window}
               imageUrl1Like={imageUrl1Like}
               imageUrl2Like={imageUrl2Like}
@@ -200,6 +186,7 @@ const mapStateToProps = createStructuredSelector({
   window2ImgUrl: selectWindow2ImgUrl,
   window1Img: selectWindow1Image,
   window2Img: selectWindow2Image,
+  likedState: selectLikedState,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PictureWindow);

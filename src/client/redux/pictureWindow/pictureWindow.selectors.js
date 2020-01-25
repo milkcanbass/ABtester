@@ -31,3 +31,7 @@ export const selectProgress = createSelector(
   [selectPictureWindowReducer],
   (pictureWindow) => pictureWindow.progress,
 );
+export const selectLikedState = createSelector(
+  [selectPictureWindowReducer],
+  (pictureWindow) => pictureWindow.likedState,
+);

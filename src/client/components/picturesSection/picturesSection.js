@@ -30,7 +30,6 @@ const PicturesSection = ({
   setPageUrl,
   pageUrl,
   setProgress,
-  progress,
 }) => {
   const [disableBtn, setDisableBtn] = useState({
     disable: false,

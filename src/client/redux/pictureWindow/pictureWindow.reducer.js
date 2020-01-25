@@ -4,6 +4,7 @@ import {
   SET_PAGEURL,
   REMOVE_PAGEURL,
   SET_PROGRESS,
+  LIKED_STATE,
 } from './pictureWindow.types';
 
 const INITIAL_STATE = {
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
   progress: 0,
   window2Image: null,
   window2ImgUrl: '',
+  likedState: false,
 };
 
 const pictureWindowReducer = (state = INITIAL_STATE, action) => {
@@ -34,6 +36,8 @@ const pictureWindowReducer = (state = INITIAL_STATE, action) => {
       return { ...state, pageUrl: payload };
     case SET_PROGRESS:
       return { ...state, progress: payload };
+    case SET_PROGRESS:
+      return { ...state, progress: true };
     case REMOVE_PAGEURL:
       return {
         pageUrl: '',
