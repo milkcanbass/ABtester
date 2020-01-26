@@ -27,11 +27,17 @@ export const selectWindow2ImgUrl = createSelector(
   (pictureWindow) => pictureWindow.window2ImgUrl,
 );
 
-export const selectProgress = createSelector(
-  [selectPictureWindowReducer],
-  (pictureWindow) => pictureWindow.progress,
-);
 export const selectLikedState = createSelector(
   [selectPictureWindowReducer],
   (pictureWindow) => pictureWindow.likedState,
+);
+
+export const selectImage1Id = createSelector(
+  [selectPictureWindowReducer],
+  (pictureWindow) => pictureWindow.image1Id,
+);
+
+export const selectImage2Id = createSelector(
+  [selectPictureWindowReducer],
+  (pictureWindow) => pictureWindow.image2Id,
 );
