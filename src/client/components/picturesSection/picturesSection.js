@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './picturesSection.scss';
+// import 'babel-polyfill'; // for regenerator runtime
 
 // Redux
 import { connect } from 'react-redux';
@@ -43,7 +44,7 @@ const PicturesSection = ({
     disable: false,
     title: '',
   });
-  const onChange = e => {
+  const onChange = (e) => {
     setPicSectionState({
       ...picSectionState,
       title: e.target.value,
@@ -75,7 +76,7 @@ const PicturesSection = ({
       await deleteImage(image2Id);
       await alert('error: Uploading image2 unsucceeded');
     } else {
-      //All green. create a page
+      // All green. create a page
       const url = await uploadImageUrl(imageUrlArr, picSectionState.title);
       await setPageUrl(url.id);
       await modalOpen();
@@ -98,7 +99,7 @@ const PicturesSection = ({
       <MyModal pageUrl={pageUrl} />
       <div className="pageWrapper">
         <div className="pageWrapperBg" />
-        <h3>Upload images.(max size 1MB)</h3>
+        <h3>Upload images.(max size 4MB)</h3>
         <div className="cardWrapper">
           <PictureWindow window="window1" />
           <PictureWindow window="window2" />
@@ -108,10 +109,10 @@ const PicturesSection = ({
             placeholder="What's your question?"
             name="title"
             value={picSectionState.title}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             maxlength="50"
           />
-          <MyButton onClick={e => handleUpload()} disabled={picSectionState.disable}>
+          <MyButton onClick={(e) => handleUpload()} disabled={picSectionState.disable}>
             {btnMes}
           </MyButton>
         </div>
@@ -128,9 +129,9 @@ const mapStateToProps = createStructuredSelector({
   image2Id: selectImage2Id,
 });
 
-const mapDispatchToState = dispatch => ({
+const mapDispatchToState = (dispatch) => ({
   modalOpen: () => dispatch(modalOpen()),
-  setPageUrl: url => dispatch(setPageUrl(url)),
+  setPageUrl: (url) => dispatch(setPageUrl(url)),
   setImageId: (uuid, image) => dispatch(setImageId(uuid, image)),
 });
 
