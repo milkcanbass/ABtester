@@ -19,6 +19,7 @@ export const setImage = (payload) => (dispatch) => {
 };
 
 export const setPageUrl = (payload) => (dispatch) => {
+  console.log(payload);
   dispatch({ type: SET_PAGEURL, payload });
 };
 

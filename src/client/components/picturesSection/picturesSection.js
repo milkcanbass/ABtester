@@ -21,7 +21,7 @@ import MyModal from '../myModal/myModal';
 import TextInput from '../textInput/textInput';
 
 // firebase
-import { storage, db } from '../../../firebase/firebaseConfig';
+import { storage, db, uploadImageUrl } from '../../../firebase/firebaseConfig';
 
 const PicturesSection = ({
   window1Image,
@@ -46,21 +46,6 @@ const PicturesSection = ({
     });
   };
 
-  const uploadImageUrl = (imageUrlArr) => db
-    .collection('pages')
-    .add({
-      title: disableBtn.title,
-      imageUrl1: imageUrlArr[0],
-      imageUrl1Like: 0,
-      imageUrl1Comments: [],
-      imageUrl2: imageUrlArr[1],
-      imageUrl2Like: 0,
-      imageUrl2Comments: [],
-    })
-    .catch((err) => {
-      alert(err);
-    });
-
   const uploadImage = (image) => {
     // For first upload failed
     if (!disableBtn.uploadSuccess) {
@@ -72,11 +57,6 @@ const PicturesSection = ({
     const uuid = Date.now() + uuidv4();
     const imageToServer = storage.ref(`images/${uuid}`).put(image);
     return imageToServer
-      .then((snapshot) => {
-        // progression function
-        const progression = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progression);
-      })
       .then(() => {
         previousUuid = uuid;
         return storage
@@ -95,28 +75,41 @@ const PicturesSection = ({
       });
   };
 
-  const handleUpload = () => {
-    if (!window1Image || !window2Image) {
-      return alert('Please select images');
-    }
+  const handleUpload = async () => {
     setDisableBtn({ disable: true, uploadSuccess: true, uploadTurn: 0 });
-    previousUuid = undefined;
+    let result;
+    const imageUrlArr = [];
+    for (let i = 0; i < 2; i++) {
+      const image = i === 0 ? window1Image : window2Image;
+      result = await uploadImage(image);
+      await imageUrlArr.push(result);
+    }
+    const url = await uploadImageUrl(imageUrlArr, disableBtn.title);
+    await setPageUrl(url.id);
+    await console.log(url);
+    await modalOpen();
+    await setDisableBtn({ disable: false, uploadSuccess: true, uploadTurn: 0 });
 
-    // handling uploadImage and get pageUrl
-    Promise.all([uploadImage(window1Image), uploadImage(window2Image)])
-      .then((result) => uploadImageUrl(result))
-      .then((docRef) => {
-        const url = docRef.id;
-        setPageUrl(url);
-      })
-      .then(() => modalOpen())
-      .then(() => setDisableBtn({
-        disable: false,
-        uploadSuccess: true,
-        uploadTurn: 0,
-        title: '',
-      }),)
-      .catch((err) => alert(err));
+    // if (!window1Image || !window2Image) {
+    //   return alert('Please select images');
+    // }
+    // setDisableBtn({ disable: true, uploadSuccess: true, uploadTurn: 0 });
+    // previousUuid = undefined;
+    // // handling uploadImage and get pageUrl
+    // Promise.all([uploadImage(window1Image), uploadImage(window2Image)])
+    //   .then((result) => uploadImageUrl(result, disableBtn.title))
+    //   .then((docRef) => {
+    //     const url = docRef.id;
+    //     setPageUrl(url);
+    //   })
+    //   .then(() => modalOpen())
+    //   .then(() => setDisableBtn({
+    //     disable: false,
+    //     uploadSuccess: true,
+    //     uploadTurn: 0,
+    //     title: '',
+    //   }),)
+    //   .catch((err) => alert(err));
   };
 
   let btnMes;

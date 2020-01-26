@@ -19,21 +19,21 @@ class Survey extends Component {
     imageUrl2Comments: [],
     title: '',
     address: '',
-    pageRef: null,
+    docRef: null,
     redirect: false,
   };
 
   componentDidMount() {
     const address = this.props.match.params.survey;
-    const pageRef = db.collection('pages').doc(address);
+    const docRef = db.collection('pages').doc(address);
 
     this.setState({
       ...this.state,
       address,
-      pageRef,
+      docRef,
     });
 
-    pageRef.onSnapshot((doc) => {
+    docRef.onSnapshot((doc) => {
       if (!doc.exists) {
         this.setState({
           ...this.state,
@@ -50,7 +50,6 @@ class Survey extends Component {
         imageUrl2Comments,
         title,
       } = doc.data();
-      console.log(this.state);
 
       this.setState({
         imageUrl1,
@@ -77,7 +76,7 @@ class Survey extends Component {
       imageUrl2Like,
       imageUrl2Comments,
       title,
-      pageRef,
+      docRef,
       redirect,
     } = this.state;
 
@@ -101,7 +100,7 @@ class Survey extends Component {
               imageUrl1Like={imageUrl1Like}
               like1Percentage={like1Percentage}
               imageUrl1={imageUrl1}
-              pageRef={pageRef}
+              docRef={docRef}
             />
             <CommentSection window="window1" comments={imageUrl1Comments} />
           </div>
@@ -112,7 +111,7 @@ class Survey extends Component {
               imageUrl2Like={imageUrl2Like}
               like2Percentage={like2Percentage}
               imageUrl2={imageUrl2}
-              pageRef={pageRef}
+              docRef={docRef}
             />
             <CommentSection window="window2" comments={imageUrl2Comments} />
           </div>

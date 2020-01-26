@@ -54,21 +54,21 @@ class PictureWindow extends Component {
 
   likeIconClick = () => {
     const {
-      likedState, pageRef, window, setLiked
+      likedState, docRef, window, setLiked
     } = this.props;
 
     if (likedState) {
       return null;
     }
-    sendLike(pageRef, window);
+    sendLike(docRef, window);
     setLiked();
   };
 
   submitComment = async (e) => {
     e.preventDefault();
-    const { window, pageRef } = this.props;
+    const { window, docRef } = this.props;
     const { comment } = this.state;
-    await uploadComment(pageRef, comment, window);
+    await uploadComment(docRef, comment, window);
     await this.setState({ ...this.state, comDisable: true });
     await this.setState({ ...this.state, comDisable: false, comment: '' });
   };
