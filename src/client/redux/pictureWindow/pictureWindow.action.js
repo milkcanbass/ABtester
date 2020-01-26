@@ -30,6 +30,6 @@ export const setProgress = (payload) => (dispatch) => {
   dispatch({ type: SET_PROGRESS, payload });
 };
 
-export const likedState = (payload) => (dispatch) => {
+export const setLiked = (payload) => (dispatch) => {
   dispatch({ type: LIKED_STATE, payload });
 };

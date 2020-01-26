@@ -34,10 +34,8 @@ const pictureWindowReducer = (state = INITIAL_STATE, action) => {
       };
     case SET_PAGEURL:
       return { ...state, pageUrl: payload };
-    case SET_PROGRESS:
-      return { ...state, progress: payload };
-    case SET_PROGRESS:
-      return { ...state, progress: true };
+    case LIKED_STATE:
+      return { ...state, likedState: true };
     case REMOVE_PAGEURL:
       return {
         pageUrl: '',
@@ -46,6 +44,7 @@ const pictureWindowReducer = (state = INITIAL_STATE, action) => {
         progress: 0,
         window2Image: null,
         window2ImgUrl: '',
+        likedState: false,
       };
     default:
       return state;

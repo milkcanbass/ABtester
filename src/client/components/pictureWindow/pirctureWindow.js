@@ -12,10 +12,11 @@ import {
   selectLikedState,
 } from '../../redux/pictureWindow/pictureWindow.selectors';
 
-import { setImage } from '../../redux/pictureWindow/pictureWindow.action';
+import { setImage, setLiked } from '../../redux/pictureWindow/pictureWindow.action';
 
 // import functions
 import { displayImage } from '../../utils/utils';
+import { sendLike, uploadComment } from '../../../firebase/firebaseConfig';
 
 // component
 import MyButton from '../myButton/myButton';
@@ -23,11 +24,11 @@ import TextInput from '../textInput/textInput';
 import LikeIcon from '../likeIcon/likeIcon';
 
 // fireStore
-import firebase, { db } from '../../../firebase/firebaseConfig';
 
 class PictureWindow extends Component {
   state = {
     comment: '',
+    comDisable: false,
     like1: 0,
     like2: 0,
   };
@@ -39,25 +40,9 @@ class PictureWindow extends Component {
     displayImage(file, window);
   };
 
+  // allow user to select same file
   inputOnClick = (e) => {
     e.target.value = null;
-  };
-
-  sendLike = () => {
-    const { window, likedState } = this.props;
-    const increment = firebase.firestore.FieldValue.increment(1);
-    const docRef = this.props.pageRef;
-
-    // Update read count. one time like per access
-    if (!likedState) {
-      if (window === 'window1') {
-        docRef.update({ imageUrl1Like: increment });
-      } else {
-        docRef.update({ imageUrl2Like: increment });
-      }
-    } else {
-      return null;
-    }
   };
 
   onChange = (e) => {
@@ -67,26 +52,25 @@ class PictureWindow extends Component {
     });
   };
 
-  submitComment = (e) => {
-    e.preventDefault();
-    const { window } = this.props;
-    const { comment } = this.state;
-    const time = new Date().getTime();
+  likeIconClick = () => {
+    const {
+      likedState, pageRef, window, setLiked
+    } = this.props;
 
-    const addComment = firebase.firestore.FieldValue.arrayUnion({ comment, time });
-    const docRef = this.props.pageRef;
-
-    // Check if comment is empty
-    if (comment.replace(/\s/g, '') === '') {
+    if (likedState) {
       return null;
     }
-    // Update read count. one time like per access
-    if (window === 'window1') {
-      docRef.update({ imageUrl1Comments: addComment });
-    } else {
-      docRef.update({ imageUrl2Comments: addComment });
-    }
-    this.setState({ ...this.state, comment: '' });
+    sendLike(pageRef, window);
+    setLiked();
+  };
+
+  submitComment = async (e) => {
+    e.preventDefault();
+    const { window, pageRef } = this.props;
+    const { comment } = this.state;
+    await uploadComment(pageRef, comment, window);
+    await this.setState({ ...this.state, comDisable: true });
+    await this.setState({ ...this.state, comDisable: false, comment: '' });
   };
 
   render() {
@@ -101,7 +85,6 @@ class PictureWindow extends Component {
       imageUrl2Like,
       like1Percentage,
       like2Percentage,
-      likedState,
     } = this.props;
 
     let imageScreen;
@@ -139,7 +122,7 @@ class PictureWindow extends Component {
             </div>
             <LikeIcon
               like
-              onClick={likedState ? null : () => this.sendLike(window)}
+              onClick={() => this.likeIconClick()}
               window={window}
               imageUrl1Like={imageUrl1Like}
               imageUrl2Like={imageUrl2Like}
@@ -179,6 +162,7 @@ class PictureWindow extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setImage: (window, image, imageUrl) => dispatch(setImage(window, image, imageUrl)),
+  setLiked: () => dispatch(setLiked()),
 });
 
 const mapStateToProps = createStructuredSelector({
